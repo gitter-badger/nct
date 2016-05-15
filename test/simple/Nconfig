@@ -1,0 +1,13 @@
+#
+# This is to test ncrux-config tools with various options
+#
+
+mainmenu "Simple Project Configuration"
+
+
+config MYBOOL
+	bool "My Boolean Option"
+
+config MYSTRING
+	string "Message"
+

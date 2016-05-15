@@ -1,0 +1,40 @@
+# ncrux-config help
+
+##Setting Menu/Window Title
+Place following in the top-level Nconfig file.
+
+	mainmenu "MyProject Configuration"
+
+##Changing the option prefix
+The environment variable "CONFIG_" defines the prefix to be applied for each configuration item. For example, the following sets "NCONFIG_" as prefix instead of default "CONFIG_".
+
+	bash# export CONFIG_=NCONFIG_
+
+	bash# ncrux-mconf Nconfig
+
+	bash# grep MYBOOL .config
+	NCONFIG_MYBOOL=y
+	bash# 
+
+##Setting the target file to which configuration to be saved
+The environment variable "KCONFIG_CONFIG" defines the file to which configuration is saved.
+
+	bash# export KCONFIG_CONFIG=simple.config
+
+	bash# ncrux-mconf Nconfig
+
+	bash# grep MYBOOL simple.config
+	CONFIG_MYBOOL=y
+	bash# 
+
+##Setting a file as C header file target.
+(TODO: not working yet)
+
+	bash# export KCONFIG_AUTOHEADER=simple_conf.h
+
+	bash# ncrux-mconf Nconfig
+
+	bash# grep MYBOOL simple_conf.h
+	#define CONFIG_MYBOOL 1
+	bash# 
+

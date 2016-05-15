@@ -10,13 +10,14 @@ zconf.hash.c
 gconf.glade.h
 *.pot
 *.mo
+*.o
 
 #
 # configuration programs
 #
-conf
-mconf
-nconf
-qconf
-gconf
-kxgettext
+ncrux-conf
+ncrux-mconf
+ncrux-nconf
+ncrux-qconf
+ncrux-gconf
+ncrux-kxgettext
