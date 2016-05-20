@@ -1,0 +1,62 @@
+#!/bin/bash
+
+#
+# Copyright (C) 2016 nCrux
+# Author: Aditi <aditi@ncrux.com>
+#
+
+#
+# Generates an XML file for a given configuration file
+#
+
+awk '
+BEGIN {
+	FS = "=";
+	printf "<?xml version="1.0"?>\n\n"
+	printf "<!--\n Automatically generated file using ncrux-config; DO NOT EDIT.\n-->\n";
+	printf "<ncrux-config>\n";
+}
+
+END {
+	printf "</ncrux-config>\n";
+}
+
+# Ignore blank lines
+/^$/ { next; }
+
+# Ignore comments
+/^#/ { next; }
+
+# Split valid lines into two words: w1 and w2
+{
+	i = index($0, "=");
+	w1 = substr($0, 1, i-1);
+	w2 = substr($0, i+1);
+}
+
+/* XML File */
+{
+	if (w2 == "y") {
+		print "\t<" w1 ">1</" w1 ">";
+	} else if(w2 == "m") {
+		print "\t<" w1 "_MODULE>1</" w1 "_MODULE>";
+	} else {
+
+		# strip off double quotes around the string
+		if(substr(w2,1,1) == "\"") {
+			len = length(w2);
+			w2 = substr(w2,2,len-2);
+
+			# FIXME: encode the string
+		}
+
+
+		print "\t<" w1 ">" w2 "</" w1 ">";
+	}
+	next;
+}
+
+
+' $1 > $2
+
+exit 0

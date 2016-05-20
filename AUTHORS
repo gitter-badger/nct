@@ -1,0 +1,160 @@
+
+Packaging of this project is done and maintained by:
+
+	Aditi <aditi@ncrux.com>
+
+
+LIST OF AUTHORS:
+
+Aditi <aditi@ncrux.com>
+Adam Lee <adam8157@gmail.com>
+Adrian Bunk <bunk@kernel.org>
+Adrian Bunk <bunk@stusta.de>
+akpm@osdl.org <akpm@osdl.org>
+Alan Cox <alan@linux.intel.com>
+Alexander Stein <alexander.stein@informatik.tu-chemnitz.de>
+Al Viro <viro@zeniv.linux.org.uk>
+Al Viro <viro@ZenIV.linux.org.uk>
+Américo Wang <xiyou.wangcong@gmail.com>
+Andi Kleen <andi@firstfloor.org>
+André Goddard Rosa <andre.goddard@gmail.com>
+Andrej Gelenberg <andrej.gelenberg@udo.edu>
+Andres Salomon <dilinger@debian.org>
+Andrey Utkin <andrey.krieger.utkin@gmail.com>
+Andy Whitcroft <apw@canonical.com>
+Aristeu Rozanski <aris@redhat.com>
+Arjun Sreedharan <arjun024@gmail.com>
+Arnaldo Carvalho de Melo <acme@ghostprotocols.net>
+Arnaud Lacombe <lacombar@gmail.com>
+Arve Hjønnevåg <arve@android.com>
+Ben Collins <bcollins@ubuntu.com>
+Ben Hutchings <ben@decadent.org.uk>
+Benjamin Poirier <bpoirier@suse.de>
+Bernhard Walle <bwalle@suse.de>
+Bill Pemberton <wfp5p@virginia.edu>
+Bjørn Forsman <bjorn.forsman@gmail.com>
+blaisorblade@yahoo.it <blaisorblade@yahoo.it>
+Brian Gerst <bgerst@didntduck.org>
+Brian Norris <computersforpeace@gmail.com>
+Catalin Marinas <catalin.marinas@arm.com>
+Cheng Renquan <crquan@gmail.com>
+Christophe Jaillet <christophe.jaillet@wanadoo.fr>
+Cody Schafer <cody@linux.vnet.ibm.com>
+Colin Ian King <colin.king@canonical.com>
+Cyrill V. Gorcunov <gorcunov@gmail.com>
+Darren Hart <dvhart@linux.intel.com>
+Dave Jones <davej@redhat.com>
+David Gibson <david@gibson.dropbear.id.au>
+Davidlohr Bueso <dave@gnu.org>
+Diego Elio 'Flameeyes' Pettenò <flameeyes@gmail.com>
+Dirk Gouders <dirk@gouders.net>
+Dirk Gouders <gouders@et.bocholt.fh-gelsenkirchen.de>
+Eduardo Silva <edsiper@gmail.com>
+EGRY Gabor <gaboregry1@t-online.hu>
+Egry Gabor <gaboregry@t-online.hu>
+Eric W. Biederman <ebiederm@xmission.com>
+Franck Bui-Huu <fbuihuu@gmail.com>
+hiromu <hiromu1996@gmail.com>
+hiromu yagura <hiromu1996@gmail.com>
+Ingo Molnar <mingo@elte.hu>
+J.A. Magallon <jamagallon@able.es>
+Jan Beulich <jbeulich@novell.com>
+Jan Beulich <JBeulich@novell.com>
+Jan Engelhardt <jengelh@computergmbh.de>
+Jean-Christophe Dubois <jdubois@mc.com>
+Jean-Christophe PLAGNIOL-VILLARD <plagnioj@jcrosoft.com>
+Jean Delvare <jdelvare@suse.de>
+Jean Sacren <sakiwit@gmail.com>
+Jesper Juhl <jesper.juhl@gmail.com>
+Jiri Kosina <jkosina@suse.cz>
+Joachim Nilsson <joachim.nilsson@vmlinux.org>
+John Stultz <john.stultz@linaro.org>
+john stultz <johnstul@us.ibm.com>
+Josh Boyer <jwboyer@redhat.com>
+Josh Triplett <josh@joshtriplett.org>
+Junio C Hamano <gitster@pobox.com>
+Justin Lecher <jlec@gentoo.org>
+Justin P. Mattock <justinmattock@gmail.com>
+Karsten Wiese <annabellesgarden@yahoo.de>
+Karsten Wiese <fzu@wemgehoertderstaat.de>
+Kees Cook <keescook@chromium.org>
+Krzysztof Mazur <krzysiek@podlesie.net>
+Kyle McMartin <kyle@redhat.com>
+Ladislav Michl <ladis@linux-mips.org>
+Linus Torvalds <torvalds@evo.osdl.org>
+Linus Torvalds <torvalds@g5.osdl.org>
+Linus Torvalds <torvalds@linux-foundation.org>
+Linus Torvalds <torvalds@ppc970.osdl.org>
+Linus Torvalds <torvalds@woody.linux-foundation.org>
+Li Zefan <lizefan@huawei.com>
+Li Zefan <lizf@cn.fujitsu.com>
+Lucas De Marchi <lucas.demarchi@profusion.mobi>
+Luca Tettamanti <kronos.it@gmail.com>
+Marcin Garski <mgarski@post.pl>
+Marco Costalba <mcostalba@gmail.com>
+Markus Heidelberg <markus.heidelberg@web.de>
+Martin Walch <walch.martin@web.de>
+Masahiro Yamada <yamada.masahiro@socionext.com>
+Masahiro Yamada <yamada.m@jp.panasonic.com>
+Matej Laitl <strohel@gmail.com>
+Matthew Wilcox <matthew@wil.cx>
+Matt Mackall <mpm@selenic.com>
+Michal Marek <mmarek@suse.cz>
+Mike Frysinger <vapier@gentoo.org>
+Naohiro Aota <naota@elisp.net>
+nir.tzachar@gmail.com <nir.tzachar@gmail.com>
+Nir Tzachar <nir.tzachar@gmail.com>
+Olof Johansson <olof@lixom.net>
+Paul Bolle <pebolle@tiscali.nl>
+Paul Gortmaker <paul.gortmaker@windriver.com>
+Paul Mundt <lethal@linux-sh.org>
+Paul Smith <psmith@gnu.org>
+Peter Foley <pefoley2@verizon.net>
+Peter Korsgaard <jacmet@sunsite.dk>
+Peter Kümmel <syntheticpp@gmx.net>
+Petr Baudis <pasky@ucw.cz>
+Raghavendra D Prabhu <rprabhu@wnohang.net>
+Randy Dunlap <randy.dunlap@oracle.com>
+Randy Dunlap <rdunlap@xenotime.net>
+Richard Kennedy <richard@rsk.demon.co.uk>
+Richard Weinberger <richard@nod.at>
+Robb, Sam <sam.robb@timesys.com>
+Robert P. J. Day <rpjday@mindspring.com>
+Rob Landley <rob@landley.net>
+Roel Kluin <12o3l@tiscali.nl>
+Roland Eggner <edvx1@systemanalysen.net>
+Roman Zippel <zippel@linux-m68k.org>
+Sam Ravnborg <sam@mars.ravnborg.org>
+Sam Ravnborg <sam@neptun.(none)>
+Sam Ravnborg <sam@neptun.ravnborg.org>
+Sam Ravnborg <sam@ravnborg.org>
+Sam Ravnborg <sam@uranus.ravnborg.org>
+Samuel Thibault <samuel.thibault@ens-lyon.org>
+Sedat Dilek <sedat.dilek@gmail.com>
+Shlomi Fish <shlomif@iglu.org.il>
+Srinivas Kandagatla <srinivas.kandagatla@st.com>
+Stephen Boyd <bebarino@gmail.com>
+Stephen Boyd <sboyd@codeaurora.org>
+Steven Rostedt (Red Hat) <rostedt@goodmis.org>
+Steven Rostedt <rostedt@goodmis.org>
+Steven Rostedt <srostedt@redhat.com>
+Thierry Vignaud <tvignaud@mandriva.com>
+Thomas Weber <weber@corscience.de>
+Tiana Rakotovao Andriamahefa <rkmahefa@gmail.com>
+Toralf Foerster <toralf.foerster@gmx.de>
+Toralf Förster <toralf.foerster@gmx.de>
+Trevor Keith <tsrk@tsrk.net>
+Ulf Magnusson <ulfalizer.lkml@gmail.com>
+Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+Vadim Bendebury (вб) <vbendeb@google.com>
+Wang YanQing <udknight@gmail.com>
+Wengmeiling <wengmeiling.weng@huawei.com>
+Will Newton <will.newton@gmail.com>
+Yaakov Selkowitz <yselkowitz@users.sourceforge.net>
+Yann E. MORIN <yann.morin.1998@anciens.enib.fr>
+Yann E. MORIN <yann.morin.1998@free.fr>
+Yuri Vasilevski <yvasilev@duke.math.cinvestav.mx>
+Yuri Vasilevski <yvasilev@imap.cc>
+Yuta Ando <yuta.and@gmail.com>
+Zhangfei Gao <zhangfei.gao@linaro.org>
+zippel@linux-m68k.org <zippel@linux-m68k.org>

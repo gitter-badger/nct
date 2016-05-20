@@ -1,0 +1,12 @@
+Package: ncrux-config
+Version: 0.1
+Section: utils
+Priority: optional
+Architecture: amd64
+Depends: libncurses5 (>= 5.9-4), libtinfo5 (>= 5.9-4), libc6 (>=2.23)
+Maintainer: Aditi <aditi@ncrux.com>
+Description: nCrux Configuration Tool
+ A tool to configure build settings of a project using
+ menu driven interface and to generate corresponding
+ source code to be used in languages like C, Python etc.
+ This tool is based on kconfig found in Linux kernel sources.

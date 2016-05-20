@@ -1460,13 +1460,11 @@ int main(int ac, char *av[])
 	//add_pixmap_directory (PACKAGE_SOURCE_DIR "/pixmaps");
 
 	/* Determine GUI path */
-	env = getenv(SRCTREE);
+	env = getenv("NCRUX_CONFIG_GLADE_FILE");
 	if (env)
-		glade_file = g_strconcat(env, "/scripts/kconfig/gconf.glade", NULL);
-	else if (av[0][0] == '/')
-		glade_file = g_strconcat(av[0], ".glade", NULL);
+		glade_file = g_strdup(env);
 	else
-		glade_file = g_strconcat(g_get_current_dir(), "/", av[0], ".glade", NULL);
+		glade_file = g_strdup("/usr/share/ncrux-config/ncrux-gconf.glade");
 
 	/* Conf stuffs */
 	if (ac > 1 && av[1][0] == '-') {

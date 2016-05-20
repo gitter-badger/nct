@@ -11,3 +11,11 @@ config MYBOOL
 config MYSTRING
 	string "Message"
 
+config MYTRISTATE
+	tristate "My Tristate"
+
+config MYINT
+	int "My Integer"
+
+config MYHEX
+	hex "My Hex Value"

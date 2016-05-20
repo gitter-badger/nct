@@ -1,0 +1,25 @@
+# ncrux-config installation
+
+## Install dependent packages
+
+sudo apt install ncurses-dev
+
+sudo apt install libglade2-dev		(optional)
+
+## Compilation
+
+	make
+
+## Installation
+
+	make install
+
+## Clean up
+
+	make clean
+
+## Creating debina package
+
+	make deb
+
+

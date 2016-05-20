@@ -1,0 +1,145 @@
+'\" t
+.\" This man page is Copyright (C) 2016 nCrux <aditi@ncrux.com>.
+.\"
+
+.TH NCRUX\-CONFIG 1 "20 May 2016" "ncrux-config" "nCrux Configuration Tool"
+
+.SH NAME
+ncrux\-config \- Menu driven tool to configure build settings of a project
+
+.SH SYNOPSIS
+.B ncrux-config
+.RI menu "   " NCONFIG_FILE " " [NCONFIG_SOURCE]
+.sp
+
+.B ncrux-config
+.RI menu-n " " NCONFIG_FILE " "[NCONFIG_SOURCE]
+.sp
+
+.B ncrux-config
+.RI menu-g " " NCONFIG_FILE " "[NCONFIG_SOURCE]
+.sp
+
+.B ncrux-config
+.RI menu-q " " NCONFIG_FILE " "[NCONFIG_SOURCE]
+.sp
+
+.B ncrux-config
+.RB gen " " NCONFIG_FILE " " OUTPUT_FILE
+.sp
+
+.SH DESCRIPTION
+A tool to configure build settings of a project using
+menu driven interface and to generate corresponding
+source code to be used in languages like C, Python etc.
+This tool is based on kconfig found in Linux kernel sources.
+
+.SH OPTIONS
+
+.TP
+.BR "menu"
+Start terminal based menu (classic).
+
+.TP
+.BR "menu-n"
+Start terminal based menu (new)
+
+.TP
+.BR "menu-g"
+Start gtk based menu
+
+.TP
+.BR "menu-q"
+Start Qt based menu
+
+.TP
+.BR "gen"
+Generate source code
+
+.TP
+.BR "NCONFIG_FILE"
+File containing current selection of build settings. In case if
+user saves the modified settings, this file gets overwritten
+with new settings.
+
+.TP
+.BR "NCONFIG_SOURCE"
+Source file for the menu interface.
+File name "Nconfig" is assumed, if not given.
+
+.TP
+.BR "OUTPUT_FILE"
+File to which generated output needs to be writtem.
+File extension of OUTPUT_FILE is recognized and appropriate
+code is generated. Recognized file extensions are:
+.RS
+.TP
+\fB.h\fP
+C source header file
+.TP
+\fB.xml\fP
+XML file
+.TP
+\fB.pl\fP
+Perl source file
+.TP
+\fB.py\fP
+Python source file
+.TP
+\fB.go\fP
+Golang source file
+.TP
+\fB.php\fP
+PHP source file
+
+.SH EXAMPLES
+.B ncrux-config
+menu   simple.conf
+
+.B ncrux-config
+menu-n simple.conf Nconfig
+
+.B ncrux-config
+menu-g simple.conf
+
+.B ncrux-config
+menu-q simple.conf Nconfig
+
+.B ncrux-config
+gen simple.conf simple.h
+
+.B ncrux-config
+gen simple.conf simple.xml
+
+.B ncrux-config
+gen simple.conf simple.pl
+
+.B ncrux-config
+gen simple.conf simple.py
+
+.B ncrux-config
+gen simple.conf simple.go
+
+.B ncrux-config
+gen simple.conf simple.php
+
+
+.SH SEE ALSO
+
+.SH HOMEPAGE
+More information about
+.B ncrux-config
+project can be found at
+<www.ncrux.com/project/ncrux-config/>
+
+.SH AUTHOR
+.B ncrux-config
+package is developed by
+.B nCrux
+. 
+.BR<www.ncrux.com/>
+.
+
+This documentation is done by Aditi <aditi@ncrux.com>
+
+

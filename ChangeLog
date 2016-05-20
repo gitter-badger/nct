@@ -1,0 +1,14 @@
+commit e0fabd8e50b76fce9c5fd35112545395e329ce23
+Author: Aditi <aditi@ncrux.com>
+
+    compiled conf, mconf, nconf. compile gconf only if glade.h is present.
+
+commit c4d8fac7b68167627899d5e616bc726bd1a62212
+Author: Aditi <aditi@ncrux.com>
+
+    import original sources of kconfig (kerel 4.5.4) into src directory
+
+commit 9011f11779bbf7dd449cc9a47cf250fc0e37c3e9
+Author: aditi-ncrux <aditi@ncrux.com>
+
+    Initial commit

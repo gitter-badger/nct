@@ -1,4 +1,6 @@
-BIN += ncrux-conf ncrux-nconf ncrux-mconf
+BIN += ncrux-mconf
+BIN += ncrux-nconf
+#BIN += ncrux-conf
 #BIN += ncrux-kxgettext
 #BIN += ncrux-qconf
 ifneq ($(shell ls /usr/include/libglade-2.0/glade/glade.h 2>/dev/null),)
@@ -90,12 +92,23 @@ ncrux-qconf: $(ncrux-qconf-objs)
 	$(CC) $^ $(ncrux-qconf-ldflags) -o $@
 
 
+LIBPATH=$(DESTDIR)/usr/lib/ncrux/ncrux-config
+SHPATH=$(DESTDIR)/usr/share/ncrux-config
 
+install:
+	install -m 0755 -d $(LIBPATH) $(SHPATH)
+	for i in $(BIN); do install -m 0755 -s -D $$i $(LIBPATH)/$$i; done
+	install -m 0644 -D *.glade $(SHPATH)/
 
+uninstall:
+	for i in $(BIN); do rm -f $(LIBPATH)/$$i; done
+	rm -f $(SHPATH)/*.glade
+	rm -rf $(LIBPATH) $(SHPATH)
 
 clean:
 	rm -f $(BIN) $(ncrux-conf-objs) $(ncrux-mconf-objs) $(ncrux-nconf-objs)
 	rm -f $(ncrux-kxgettext-objs)
 	rm -f $(ncrux-qconf-cxxobjs) $(ncrux-qconf-objs) $(ncrux-gconf-objs)
 	rm -f zconf.hash.c zconf.lex.c zconf.tab.c
+
 
