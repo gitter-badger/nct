@@ -4,7 +4,7 @@ SHPATH=$(DESTDIR)/usr/share/ncrux-config
 
 install:
 	install -m 0755 -D ncrux-config $(DESTDIR)/usr/bin/ncrux-config
-	install -D ncrux-config-* $(LIBPATH)/
+	install -D -m 0755 ncrux-config-* $(LIBPATH)/
 
 clean:
 

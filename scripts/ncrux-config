@@ -134,7 +134,7 @@ esac
 
 case "$CMD" in
 menu)
-	ncrux-mconf $NCONFIG_SRC
+	ncrux-mconf -s $NCONFIG_SRC
 	;;
 menu-n)
 	ncrux-nconf $NCONFIG_SRC

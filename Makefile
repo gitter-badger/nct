@@ -10,6 +10,9 @@ install: all
 	$(MAKE) -C src install
 	$(MAKE) -C scripts install
 	$(MAKE) -C doc install
+	@mkdir -p $(DESTDIR)/usr/share/doc/ncrux-config/
+	cp -ar examples $(DESTDIR)/usr/share/doc/ncrux-config/
+	@$(MAKE) -C $(DESTDIR)/usr/share/doc/ncrux-config/examples clean
 
 deb: install
 	mkdir -p $(DESTDIR)/DEBIAN
