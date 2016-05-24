@@ -16,13 +16,16 @@ menu-q:
 
 PHONY += menu menu-n menu-g menu-q
 
-gen-all: h pl xml php go
+gen-all: h pl py xml php go
 
 h: $(CONF_FILE)
 	ncrux-config gen $(CONF_FILE) simple_conf.h
 
 pl: $(CONF_FILE)
 	ncrux-config gen $(CONF_FILE) simple_conf.pl
+
+py: $(CONF_FILE)
+	ncrux-config gen $(CONF_FILE) simple_conf.py
 
 xml: $(CONF_FILE)
 	ncrux-config gen $(CONF_FILE) simple_conf.xml
@@ -34,7 +37,7 @@ go: $(CONF_FILE)
 	-mkdir -p simple_conf
 	ncrux-config gen $(CONF_FILE) simple_conf/simple_conf.go
 
-test-all: test-h test-pl test-xml test-php test-go
+test-all: test-h test-pl test-py test-xml test-php test-go
 
 test-h: h
 	$(CC) test.c -o test
@@ -42,6 +45,9 @@ test-h: h
 
 test-pl: pl
 	perl test.pl
+
+test-py: py
+	python test.py
 
 test-xml: xml
 	xmllint simple_conf.xml
@@ -60,4 +66,5 @@ clean:
 	rm -f simple_conf.py
 	rm -rf simple_conf/
 	rm -f simple_conf.php
+	rm -f simple_conf.py simple_conf.pyc
 
