@@ -7,73 +7,7 @@
 #
 
 usage() {
-	cat <<EOF
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-              nCrux Configuration Tool
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-NAME
-	ncrux-config - menu-driven tool to modify a project's build settings.
-
-SYNOPSIS
-	ncrux-config {menu|menu-n|menu-g|menu-q} NCONFIG_FILE [NCONFIG_SOURCE]
-	ncrux-config gen NCONFIG_FILE OUTPUT_FILE
-
-DESCRIPTION
-	A tool to configure build settings of a project using
-	menu driven interface and to generate corresponding
-	source code to be used in languages like C, Python etc.
-	This tool is based on kconfig found in Linux kernel sources.
-
-OPTIONS
-	menu		Start terminal based menu (classic)
-
-	menu-n		Start terminal based menu (new)
-
-	menu-g		Start gtk based menu
-
-	menu-q		Start Qt based menu
-
-	gen		Generate source code
-
-	NCONFIG_FILE	File containing current selection of build settings. In case if
-			user saves the modified settings, this file gets overwritten
-			with new settings.
-
-	NCONFIG_SOURCE	Source file for the menu interface.
-			File name "Nconfig" is assumed, if not given.
-
-	OUTPUT_FILE	File to which generated output needs to be writtem.
-			File extension of OUTPUT_FILE is recognized and appropriate
-			code is generated. Recognized file extensions are:
-			  .h   - C source header file
-			  .xml - XML file
-			  .pl  - Perl source file
-			  .py  - Python source file
-			  .go  - Golang source file
-			  .php - PHP source file
-
-
-EXAMPLES
-	ncrux-config menu simple.conf
-	ncrux-config menu-n simple.conf
-	ncrux-config menu-g simple.conf Nconfig
-	ncrux-config menu-q simple.conf Nconfig
-	ncrux-config gen simple.conf simple_config.h
-	ncrux-config gen simple.conf simple_config.xml
-	ncrux-config gen simple.conf simple_config.pl
-	ncrux-config gen simple.conf simple_config.py
-	ncrux-config gen simple.conf simple_config.go
-	ncrux-config gen simple.conf simple_config.php
-
-HOMEPAGE
-	More information about ncrux-config project can be found
-	at <www.ncrux.com/project/ncrux-config/>
-
-AUTHOR
-	ncrux-config package is developed by nCrux. <www.ncrux.com/>.
-
-	This documentation is done by Aditi <aditi@ncrux.com>
-EOF
+	man -P cat ncrux-config
 }
 
 
@@ -126,6 +60,24 @@ gen)
 	# Check output generator is available for requested file extension
 	EXT=${OUTPUT_FILE##*.}
 	;;
+merge)
+	if [ ! -f $NCONFIG_FILE ]; then
+		echo Configuration file $NCONFIG_FILE is not present
+		exit 1
+	fi
+
+	if [ "$3" == "" ]; then
+		echo Please provide configuration fragment file
+		exit 1
+	else
+		NCONFIG_FRAMENT=$3
+	fi 
+
+	if [ ! -f $NCONFIG_FRAMENT ]; then
+		echo Configuration fragment file $NCONFIG_FRAMENT is not present
+		exit 1
+	fi
+	;;
 *)
 	usage
 	exit 1
@@ -148,6 +100,9 @@ menu-q)
 	;;
 gen)
 	ncrux-config-gen-$EXT $NCONFIG_FILE $OUTPUT_FILE
+	;;
+merge)
+	ncrux-config-merge $NCONFIG_FILE $NCONFIG_FRAMENT
 	;;
 esac
 

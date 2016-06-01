@@ -1,5 +1,6 @@
 
 CONF_FILE=simple.conf
+CONF_FRAGMENT_FILE=fragment.conf
 CONF_SRC=Nconfig
 
 menu:
@@ -13,6 +14,9 @@ menu-g:
 
 menu-q:
 	ncrux-config menu-q $(CONF_FILE) $(CONF_SRC)
+
+merge:
+	ncrux-config merge $(CONF_FILE) $(CONF_FRAGMENT_FILE)
 
 PHONY += menu menu-n menu-g menu-q
 

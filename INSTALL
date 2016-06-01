@@ -4,6 +4,8 @@
 
 sudo apt install ncurses-dev
 
+sudo apt install man2html-base
+
 sudo apt install libglade2-dev		(optional)
 
 ## Compilation
@@ -18,7 +20,7 @@ sudo apt install libglade2-dev		(optional)
 
 	make clean
 
-## Creating debina package
+## Creating debian package
 
 	make deb
 

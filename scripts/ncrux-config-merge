@@ -1,0 +1,85 @@
+#!/bin/sh
+#
+#  Simplified to just merge given config fragment into parent config.
+#  Renamed to ncrux-config-merge to avoid conflicts with original.
+#  Minor changes to align with ncrux-config tool.
+#    Aditi <aditi@ncrux.com>
+#
+#  merge_config.sh - Takes a list of config fragment values, and merges
+#  them one by one. Provides warnings on overridden values, and specified
+#  values that did not make it to the resulting .config file (due to missed
+#  dependencies or config symbol removal).
+#
+#  Portions reused from kconf_check and generate_cfg:
+#  http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/kconf_check
+#  http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/generate_cfg
+#
+#  Copyright (c) 2009-2010 Wind River Systems, Inc.
+#  Copyright 2011 Linaro
+#  Copyright (c) 2016 nCrux
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License version 2 as
+#  published by the Free Software Foundation.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#  See the GNU General Public License for more details.
+
+clean_up() {
+	rm -f $TMP_FILE
+	exit
+}
+trap clean_up HUP INT TERM
+
+WARNREDUN=true
+
+BASEFILE=$1
+shift;
+
+if [ ! -r "$BASEFILE" ]; then
+	echo "The base file '$BASEFILE' does not exist.  Exit." >&2
+	exit 1
+fi
+
+MERGE_LIST=$*
+SED_CONFIG_EXP="s/^\(# \)\{0,1\}\(NCONFIG_[a-zA-Z0-9_]*\)[= ].*/\2/p"
+TMP_FILE=$(mktemp ./.tmp.config.XXXXXXXXXX)
+
+echo "Using $BASEFILE as base"
+cat $BASEFILE > $TMP_FILE
+
+# Merge files, printing warnings on overridden values
+for MERGE_FILE in $MERGE_LIST ; do
+	echo "Merging $MERGE_FILE"
+	if [ ! -r "$MERGE_FILE" ]; then
+		echo "The merge file '$MERGE_FILE' does not exist.  Exit." >&2
+		exit 1
+	fi
+	CFG_LIST=$(sed -n "$SED_CONFIG_EXP" $MERGE_FILE)
+
+	for CFG in $CFG_LIST ; do
+		grep -q -w $CFG $TMP_FILE || continue
+		PREV_VAL=$(grep -w $CFG $TMP_FILE)
+		NEW_VAL=$(grep -w $CFG $MERGE_FILE)
+		if [ "x$PREV_VAL" != "x$NEW_VAL" ] ; then
+			echo Value of $CFG is redefined by fragment $MERGE_FILE:
+			echo Previous  value: $PREV_VAL
+			echo New value:       $NEW_VAL
+			echo
+		elif [ "$WARNREDUN" = "true" ]; then
+			echo Value of $CFG is redundant by fragment $MERGE_FILE:
+		fi
+		sed -i "/$CFG[ =]/d" $TMP_FILE
+	done
+	cat $MERGE_FILE >> $TMP_FILE
+done
+
+#cp -T -- "$TMP_FILE" "$BASEFILE"
+cp -f "$TMP_FILE" "$BASEFILE"
+echo "#"
+echo "# merged configuration written to $BASEFILE"
+echo "#"
+clean_up
+exit

@@ -1,2 +1,2 @@
 # ncrux-config
-Standalone build configuration tool based on Linux Kernel's kconfig
+Standalone project build configuration tool based on Linux Kernel's kconfig.

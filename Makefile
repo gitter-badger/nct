@@ -4,6 +4,7 @@ export DESTDIR
 
 all:
 	$(MAKE) -C src
+	$(MAKE) -C doc
 
 install: all
 	mkdir -p $(DESTDIR)
