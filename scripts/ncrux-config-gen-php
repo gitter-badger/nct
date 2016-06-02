@@ -11,7 +11,9 @@
 
 awk '
 BEGIN {
-	FS = "=";
+	add_quotes_to_int = 0;
+	add_quotes_to_hex = 0;
+	convert_hex_to_int = 0;
 	printf "<?php\n#\n#\n# Automatically generated file using ncrux-config; DO NOT EDIT.\n#\n#\n";
 	print "$ncrux_config = array(\n";
 }
@@ -27,21 +29,47 @@ END {
 /^#/ { next; }
 
 # Split valid lines into two words: w1 and w2
-{
+/^NCONFIG_/ {
+
 	i = index($0, "=");
-	w1 = substr($0, 1, i-1);
+
+	# Strip off NCONFIG_ prefix
+	w1 = substr($0, 9, i-9);
 	w2 = substr($0, i+1);
+
+	if (w2 ~ /^0x/) {
+
+		# Hex value
+		#substr(w2,1,2) == "0x") {
+		if(convert_hex_to_int) {
+			w2 = strtonum(w2);
+		}
+
+		if(add_quotes_to_hex) {
+			w2 = "\"" w2 "\"";
+		}
+
+	} else if (w2 ~ /^[0-9]+/) {
+
+		# Integer Value
+		if(add_quotes_to_int) {
+			w2 = "\"" w2 "\"";
+		}
+
+	} else if (w2 ~ /^[nym]+/) {
+
+		# Boolean or Tristate Value
+		w2 = "\"" w2 "\"";
+
+	} else if (w2 ~ /^"/) {
+
+		# String Value
+	}
 }
 
-# Perl File with key/value pairs in a hash
-{
-	if (w2 == "y") {
-		print "\t\"" w1 "\" => 1,";
-	} else if(w2 == "m") {
-		print "\t\"" w1 "_MODULE\" => 1,";
-	} else {
-		print "\t\"" w1 "\" => " w2 ",";
-	}
+# PHP File with key/value pairs
+/^NCONFIG_/ {
+	print "\t\"" w1 "\" => " w2 ",";
 	next;
 }
 

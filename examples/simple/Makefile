@@ -20,6 +20,8 @@ merge:
 
 PHONY += menu menu-n menu-g menu-q
 
+$(CONF_FILE): menu
+
 gen-all: h pl py xml php go
 
 h: $(CONF_FILE)

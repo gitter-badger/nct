@@ -27,6 +27,7 @@ clean:
 	$(MAKE) -C src clean
 	$(MAKE) -C scripts clean
 	$(MAKE) -C doc clean
+	$(MAKE) -C examples clean
 	rm -f $(DESTDIR)/usr/bin/ncrux-config
 	rm -f $(DESTDIR)/usr/share/man/man1/ncrux-config.1.gz
 	rm -rf .install
