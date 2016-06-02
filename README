@@ -1,2 +1,8 @@
 # ncrux-config
-Standalone project build configuration tool based on Linux Kernel's kconfig.
+
+## nCrux Configuration Tool
+A tool to configure build settings  of  a  project  using  menu  driven
+interface  and to generate corresponding source code to be used in lan‐
+guages like C, Python etc.  This tool is  based  on  kconfig  found  in
+Linux kernel sources.
+

@@ -1,0 +1,11 @@
+version 0.1.0:
+
+  - Avoid NCONFIG_ prefix in generated code
+  - Initial support for fragment merging, misc changes
+  - Minor changes related to default menu title
+  - Added python code generator and test.py script
+  - php, golang code generation, test programs included
+  - Implemented top-level command, debianisation.
+  - compiled conf, mconf, nconf. compile gconf only if glade.h is present.
+  - import original sources of kconfig (kerel 4.5.4) into src directory
+  - Initial commit
