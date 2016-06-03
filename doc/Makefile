@@ -13,7 +13,7 @@ install:
 	install -m 0644 -D ../AUTHORS $(DOCPATH)/AUTHORS
 	install -m 0644 -D ../copyright $(DOCPATH)/copyright
 	install -m 0644 -D ../README $(DOCPATH)/README
-	install -m 0644 -D ../ChangeLog $(DOCPATH)/changelog
+	install -m 0644 -D ../Changelog $(DOCPATH)/changelog
 	gzip -n -9 -f $(DOCPATH)/changelog
 
 uninstall:
