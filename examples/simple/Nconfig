@@ -13,6 +13,7 @@ config MYSTRING
 
 config MYTRISTATE
 	tristate "My Tristate"
+	default m
 
 config MYINT
 	int "My Integer"
