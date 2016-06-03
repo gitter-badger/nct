@@ -2,3 +2,5 @@ tags
 cscope.out
 .install
 ncrux-config.deb
+RPMS
+*.rpm

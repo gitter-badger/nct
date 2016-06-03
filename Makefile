@@ -17,8 +17,16 @@ install: all
 
 deb: install
 	mkdir -p $(DESTDIR)/DEBIAN
-	cp package/deb/control $(DESTDIR)/DEBIAN/
+	cp package/debian/control $(DESTDIR)/DEBIAN/
 	dpkg-deb --build $(DESTDIR) ncrux-config.deb
+
+rpm: install
+	rm -rf RPMS
+	mkdir -p RPMS
+	rpmbuild -bb package/rpm/ncrux-config.spec --buildroot=`readlink -e $(DESTDIR)`
+	mv `find RPMS -name \*.rpm` .
+	rm -rf RPMS
+
 
 deb-check:
 	lintian ncrux-config.deb
@@ -28,7 +36,5 @@ clean:
 	$(MAKE) -C scripts clean
 	$(MAKE) -C doc clean
 	$(MAKE) -C examples clean
-	rm -f $(DESTDIR)/usr/bin/ncrux-config
-	rm -f $(DESTDIR)/usr/share/man/man1/ncrux-config.1.gz
-	rm -rf .install
-	rm -f ncrux-config.deb
+	rm -f *.rpm *.deb
+	rm -rf $(DESTDIR)
