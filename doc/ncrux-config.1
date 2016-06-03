@@ -1,159 +1,131 @@
-'\" t
-.\" This man page is Copyright (C) 2016 nCrux <aditi@ncrux.com>.
-.\"
-
-.TH NCRUX\-CONFIG 1 "02 Jun 2016" "ncrux-config" "nCrux Configuration Tool"
-
-.SH NAME
-ncrux\-config \- Menu driven tool to configure build settings of a project
-
-.SH SYNOPSIS
-.B ncrux-config
-.RI menu "   " NCONFIG_FILE " " [NCONFIG_SOURCE]
-.sp
-
-.B ncrux-config
-.RI menu-n " " NCONFIG_FILE " " [NCONFIG_SOURCE]
-.sp
-
-.B ncrux-config
-.RI menu-g " " NCONFIG_FILE " " [NCONFIG_SOURCE]
-.sp
-
-.B ncrux-config
-.RI menu-q " " NCONFIG_FILE " " [NCONFIG_SOURCE]
-.sp
-
-.B ncrux-config
-.RB gen " " NCONFIG_FILE " " OUTPUT_FILE
-.sp
-
-.B ncrux-config
-.RB merge " " NCONFIG_FILE " " NCONFIG_FRAMENT
-.sp
-
-.SH DESCRIPTION
-A tool to configure build settings of a project using
-menu driven interface and to generate corresponding
-source code to be used in languages like C, Python etc.
-This tool is based on kconfig found in Linux kernel sources.
-
-.SH OPTIONS
-
-.TP
-.BR "menu"
-Start terminal based menu (classic).
-
-.TP
-.BR "menu-n"
-Start terminal based menu (new)
-
-.TP
-.BR "menu-g"
-Start gtk based menu
-
-.TP
-.BR "menu-q"
-Start Qt based menu
-
-.TP
-.BR "gen"
-Generate source code
-
-.TP
-.BR "merge"
-Merge given configuration fragment into base configuration file.
-
-.TP
-.BR "NCONFIG_FILE"
-File containing current selection of build settings. In case if
-user saves the modified settings, this file gets overwritten
-with new settings.
-
-.TP
-.BR "NCONFIG_SOURCE"
-Source file for the menu interface.
-File name "Nconfig" is assumed, if not given.
-
-.TP
-.BR "NCONFIG_FRAGMENT"
-File containing partial configuration settings.
-
-.TP
-.BR "OUTPUT_FILE"
-File to which generated output needs to be writtem.
-File extension of OUTPUT_FILE is recognized and appropriate
-code is generated. Recognized file extensions are:
-.RS
-.TP
-\fB.h\fP
-C source header file
-.TP
-\fB.xml\fP
-XML file
-.TP
-\fB.pl\fP
-Perl source file
-.TP
-\fB.py\fP
-Python source file
-.TP
-\fB.go\fP
-Golang source file
-.TP
-\fB.php\fP
-PHP source file
-
-.SH EXAMPLES
-.B ncrux-config
-menu   simple.conf
-
-.B ncrux-config
-menu-n simple.conf Nconfig
-
-.B ncrux-config
-menu-g simple.conf
-
-.B ncrux-config
-menu-q simple.conf Nconfig
-
-.B ncrux-config
-gen simple.conf simple.h
-
-.B ncrux-config
-gen simple.conf simple.xml
-
-.B ncrux-config
-gen simple.conf simple.pl
-
-.B ncrux-config
-gen simple.conf simple.py
-
-.B ncrux-config
-gen simple.conf simple.go
-
-.B ncrux-config
-gen simple.conf simple.php
-
-.B ncrux-config
-merge simple.conf other-feature.conf
-
-.SH SEE ALSO
-
-.SH HOMEPAGE
-More information about
-.B ncrux-config
-project can be found at
-<http://www.ncrux.com/project/ncrux-config/>
-
-.SH AUTHOR
-.B ncrux-config
-package is developed by
-.B nCrux
-. 
-.BR <http://www.ncrux.com/>
+.\" Man page generated from reStructuredText.
 .
-
-This documentation is done by Aditi <aditi@ncrux.com>
-
-
+.TH NCRUX-CONFIG 1 "2 Jun 2016" "0.2.0" "nCrux Configuration Tool"
+.SH NAME
+ncrux-config \- Menu driven tool to configure build settings of a project
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.SH SYNOPSIS
+.sp
+ncrux\-config menu   config_file [config_source]
+.sp
+ncrux\-config menu\-n config_file [config_source]
+.sp
+ncrux\-config menu\-g config_file [config_source]
+.sp
+ncrux\-config menu\-q config_file [config_source]
+.sp
+ncrux\-config gen    config_file output_file
+.sp
+ncrux\-config merge  config_file config_fragment
+.SH DESCRIPTION
+.sp
+A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl etc. This tool is based on kconfig found in Linux kernel sources.
+.SH OPTIONS
+.sp
+menu    Start terminal based menu (classic)
+.sp
+menu\-n  Start terminal based menu (new)
+.sp
+menu\-g  Start gtk based menu
+.sp
+menu\-q  Start Qt based menu
+.sp
+gen     Generate source code
+.sp
+merge   Merge given configuration fragment into base configuration file.
+.INDENT 0.0
+.TP
+.B config_file
+File containing current selection of build settings. In case if user saves the modified settings, this file gets overwritten with new settings.
+.TP
+.B config_source
+Source file for the menu interface. File name "Nconfig" is assumed, if not given.
+.TP
+.B config_fragment
+File containing partial configuration settings.
+.TP
+.B output_file
+File to which generated output needs to be writtem. File extension of output_file is recognized and appropriate code is generated. Recognized file extensions are:
+.INDENT 7.0
+.INDENT 3.5
+\fBh\fP         C source header file
+.sp
+\fBxml\fP       XML file
+.sp
+\fBpl\fP        Perl source file
+.sp
+\fBpy\fP        Python source file
+.sp
+\fBgo\fP        Golang source file
+.sp
+\fBphp\fP       PHP source file
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SH EXAMPLES
+.sp
+ncrux\-config menu simple.conf
+.sp
+ncrux\-config menu\-n simple.conf Nconfig
+.sp
+ncrux\-config menu\-g simple.conf
+.sp
+ncrux\-config menu\-q simple.conf Nconfig
+.sp
+ncrux\-config gen simple.conf simple.h
+.sp
+ncrux\-config gen simple.conf simple.xml
+.sp
+ncrux\-config gen simple.conf simple.pl
+.sp
+ncrux\-config gen simple.conf simple.py
+.sp
+ncrux\-config gen simple.conf simple.go
+.sp
+ncrux\-config gen simple.conf simple.php
+.sp
+ncrux\-config merge simple.conf other\-feature.conf
+.SH HOMEPAGE
+.sp
+More information about ncrux\-config project can be found at <\fI\%http://www.ncrux.com/project/ncrux\-config/\fP>
+.SH AUTHOR
+.sp
+ncrux\-config package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
+.sp
+This documentation is done by Aditi <\fI\%aditi@ncrux.com\fP>.
+.SH REPORTING BUGS
+.sp
+You can report bugs at <\fI\%https://github.com/ncrux/ncrux\-config/issues\fP>
+.SH COPYRIGHT
+.sp
+Copyright © 2016 nCrux.
+License: GNU GPL version 2.
+This is free software: you are free to change and redistribute it.  There is NO WARRANTY, to the extent permitted by law.
+.\" Generated by docutils manpage writer.
+.

@@ -4,231 +4,25 @@ Content-type: text/html; charset=UTF-8
 <HTML><HEAD><TITLE>Man page of NCRUX-CONFIG</TITLE>
 </HEAD><BODY>
 <H1>NCRUX-CONFIG</H1>
-Section: nCrux Configuration Tool (1)<BR>Updated: 02 Jun 2016<BR><A HREF="#index">Index</A>
+Section: nCrux Configuration Tool (1)<BR>Updated: 2 Jun 2016<BR><A HREF="#index">Index</A>
 <A HREF="/cgi-bin/man/man2html">Return to Main Contents</A><HR>
 
-<P>
 <A NAME="lbAB">&nbsp;</A>
 <H2>NAME</H2>
 
 ncrux-config - Menu driven tool to configure build settings of a project
-<P>
-<A NAME="lbAC">&nbsp;</A>
-<H2>SYNOPSIS</H2>
 
-<B>ncrux-config</B>
 
-menu<I>   </I>NCONFIG_FILE<I> </I>[NCONFIG_SOURCE]
-
-<P>
-<P>
-<B>ncrux-config</B>
-
-menu-n<I> </I>NCONFIG_FILE<I> </I>[NCONFIG_SOURCE]
-
-<P>
-<P>
-<B>ncrux-config</B>
-
-menu-g<I> </I>NCONFIG_FILE<I> </I>[NCONFIG_SOURCE]
-
-<P>
-<P>
-<B>ncrux-config</B>
-
-menu-q<I> </I>NCONFIG_FILE<I> </I>[NCONFIG_SOURCE]
-
-<P>
-<P>
-<B>ncrux-config</B>
-
-gen<B> </B>NCONFIG_FILE<B> </B>OUTPUT_FILE
-
-<P>
-<P>
-<B>ncrux-config</B>
-
-merge<B> </B>NCONFIG_FILE<B> </B>NCONFIG_FRAMENT
-
-<P>
-<P>
-<A NAME="lbAD">&nbsp;</A>
-<H2>DESCRIPTION</H2>
-
-A tool to configure build settings of a project using
-menu driven interface and to generate corresponding
-source code to be used in languages like C, Python etc.
-This tool is based on kconfig found in Linux kernel sources.
-<P>
-<A NAME="lbAE">&nbsp;</A>
-<H2>OPTIONS</H2>
-
-<P>
-<DL COMPACT>
-<DT><B>menu</B>
-
-<DD>
-Start terminal based menu (classic).
-<P>
-<DT><B>menu-n</B>
-
-<DD>
-Start terminal based menu (new)
-<P>
-<DT><B>menu-g</B>
-
-<DD>
-Start gtk based menu
-<P>
-<DT><B>menu-q</B>
-
-<DD>
-Start Qt based menu
-<P>
-<DT><B>gen</B>
-
-<DD>
-Generate source code
-<P>
-<DT><B>merge</B>
-
-<DD>
-Merge given configuration fragment into base configuration file.
-<P>
-<DT><B>NCONFIG_FILE</B>
-
-<DD>
-File containing current selection of build settings. In case if
-user saves the modified settings, this file gets overwritten
-with new settings.
-<P>
-<DT><B>NCONFIG_SOURCE</B>
-
-<DD>
-Source file for the menu interface.
-File name &quot;Nconfig&quot; is assumed, if not given.
-<P>
-<DT><B>NCONFIG_FRAGMENT</B>
-
-<DD>
-File containing partial configuration settings.
-<P>
-<DT><B>OUTPUT_FILE</B>
-
-<DD>
-File to which generated output needs to be writtem.
-File extension of OUTPUT_FILE is recognized and appropriate
-code is generated. Recognized file extensions are:
-<DL COMPACT><DT><DD>
-<DL COMPACT>
-<DT><B>.h</B><DD>
-C source header file
-<DT><B>.xml</B><DD>
-XML file
-<DT><B>.pl</B><DD>
-Perl source file
-<DT><B>.py</B><DD>
-Python source file
-<DT><B>.go</B><DD>
-Golang source file
-<DT><B>.php</B><DD>
-PHP source file
-<P>
-</DL>
-</DL>
-</DL>
-<A NAME="lbAF">&nbsp;</A>
-<H2>EXAMPLES</H2>
-
-<B>ncrux-config</B>
-
-menu   simple.conf
-<P>
-<B>ncrux-config</B>
-
-menu-n simple.conf Nconfig
-<P>
-<B>ncrux-config</B>
-
-menu-g simple.conf
-<P>
-<B>ncrux-config</B>
-
-menu-q simple.conf Nconfig
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.h
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.xml
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.pl
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.py
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.go
-<P>
-<B>ncrux-config</B>
-
-gen simple.conf simple.php
-<P>
-<B>ncrux-config</B>
-
-merge simple.conf other-feature.conf
-<P>
-<A NAME="lbAG">&nbsp;</A>
-<H2>SEE ALSO</H2>
-
-<P>
-<A NAME="lbAH">&nbsp;</A>
-<H2>HOMEPAGE</H2>
-
-More information about
-<B>ncrux-config</B>
-
-project can be found at
-&lt;<A HREF="http://www.ncrux.com/project/ncrux-config/">http://www.ncrux.com/project/ncrux-config/</A>&gt;
-<P>
-<A NAME="lbAI">&nbsp;</A>
-<H2>AUTHOR</H2>
-
-<B>ncrux-config</B>
-
-package is developed by
-<B>nCrux</B>
-
-<B>&lt;<A HREF="http://www.ncrux.com/">http://www.ncrux.com/</A>&gt;</B>
-
-<P>
-This documentation is done by Aditi &lt;<A HREF="mailto:aditi@ncrux.com">aditi@ncrux.com</A>&gt;
-<P>
-<P>
-<P>
 
 <HR>
 <A NAME="index">&nbsp;</A><H2>Index</H2>
 <DL>
 <DT><A HREF="#lbAB">NAME</A><DD>
-<DT><A HREF="#lbAC">SYNOPSIS</A><DD>
-<DT><A HREF="#lbAD">DESCRIPTION</A><DD>
-<DT><A HREF="#lbAE">OPTIONS</A><DD>
-<DT><A HREF="#lbAF">EXAMPLES</A><DD>
-<DT><A HREF="#lbAG">SEE ALSO</A><DD>
-<DT><A HREF="#lbAH">HOMEPAGE</A><DD>
-<DT><A HREF="#lbAI">AUTHOR</A><DD>
 </DL>
 <HR>
 This document was created by
 <A HREF="/cgi-bin/man/man2html">man2html</A>,
 using the manual pages.<BR>
-Time: 08:43:02 GMT, June 02, 2016
+Time: 19:42:46 GMT, June 03, 2016
 </BODY>
 </HTML>
