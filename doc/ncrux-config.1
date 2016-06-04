@@ -45,7 +45,7 @@ ncrux\-config gen    config_file output_file
 ncrux\-config merge  config_file config_fragment
 .SH DESCRIPTION
 .sp
-A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl etc. This tool is based on kconfig found in Linux kernel sources.
+A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.
 .SH OPTIONS
 .sp
 menu    Start terminal based menu (classic)
@@ -87,6 +87,8 @@ File to which generated output needs to be writtem. File extension of output_fil
 \fBphp\fP       PHP source file
 .sp
 \fBrb\fP        Ruby source file
+.sp
+\fBjs\fP        JavaScript source file
 .UNINDENT
 .UNINDENT
 .UNINDENT
@@ -221,6 +223,18 @@ Generate Ruby source file based on configuration settings read from simple.conf:
 .nf
 .ft C
 ncrux\-config gen simple.conf simple.rb
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Generate JavaScript source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+ncrux\-config gen simple.conf simple.js
 .ft P
 .fi
 .UNINDENT

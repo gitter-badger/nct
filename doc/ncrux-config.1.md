@@ -29,7 +29,7 @@ ncrux-config merge  config_file config_fragment
 
 DESCRIPTION
 ===========
-A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl etc. This tool is based on kconfig found in Linux kernel sources.
+A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.
 
 OPTIONS
 =======
@@ -70,6 +70,8 @@ output_file
   **php**	PHP source file
 
   **rb**	Ruby source file
+
+  **js**	JavaScript source file
 
 
 EXAMPLES
@@ -120,6 +122,10 @@ Generate PHP source file based on configuration settings read from simple.conf::
 Generate Ruby source file based on configuration settings read from simple.conf::
 
 	ncrux-config gen simple.conf simple.rb
+
+Generate JavaScript source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.js
 
 Merge configuration fragments present in other-feature.conf into simple.conf::
 

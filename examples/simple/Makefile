@@ -42,10 +42,14 @@ php: $(CONF_FILE)
 go: $(CONF_FILE)
 	-mkdir -p simple_conf
 	ncrux-config gen $(CONF_FILE) simple_conf/simple_conf.go
+
 rb: $(CONF_FILE)
 	ncrux-config gen $(CONF_FILE) simple_conf.rb
 
-test-all: test-h test-pl test-py test-xml test-php test-go test-rb
+js: $(CONF_FILE)
+	ncrux-config gen $(CONF_FILE) simple_conf.js
+
+test-all: test-h test-pl test-py test-xml test-php test-go test-rb test-js
 
 test-h: h
 	$(CC) test.c -o test
@@ -69,6 +73,10 @@ test-go: go
 test-rb: rb
 	./test.rb
 
+test-js: js
+	nodejs test.js
+
+
 clean:
 	rm -f simple.conf simple.conf.old
 	rm -f simple_conf.h test
@@ -79,4 +87,5 @@ clean:
 	rm -f simple_conf.php
 	rm -f simple_conf.py simple_conf.pyc
 	rm -f simple_conf.rb
+	rm -f simple_conf.js
 
