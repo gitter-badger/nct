@@ -69,29 +69,61 @@ output_file
 
   **php**	PHP source file
 
+  **rb**	Ruby source file
+
+
 EXAMPLES
 ========
-ncrux-config menu simple.conf
 
-ncrux-config menu-n simple.conf Nconfig
+Load configuration settings from simple.conf if present and display ncurses
+based configuration menu based on config_source file Nconfig and write the
+changes to simple.conf::
 
-ncrux-config menu-g simple.conf
+	ncrux-config menu simple.conf
 
-ncrux-config menu-q simple.conf Nconfig
+Display ncurses based newer menu, read and write configuration changes to simple.conf::
 
-ncrux-config gen simple.conf simple.h
+	ncrux-config menu-n simple.conf Nconfig
 
-ncrux-config gen simple.conf simple.xml
+Display Gtk based menu, read and write configuration changes to simple.conf::
 
-ncrux-config gen simple.conf simple.pl
+	ncrux-config menu-g simple.conf
 
-ncrux-config gen simple.conf simple.py
+Display Qt based menu, read and write configuration changes to simple.conf::
 
-ncrux-config gen simple.conf simple.go
+	ncrux-config menu-q simple.conf Nconfig
 
-ncrux-config gen simple.conf simple.php
+Generate C header file based on configuration settings read from simple.conf::
 
-ncrux-config merge simple.conf other-feature.conf
+	ncrux-config gen simple.conf simple.h
+
+Generate XML file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.xml
+
+Generate Perl source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.pl
+
+Generate Python source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.py
+
+Generate Golang source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.go
+
+Generate PHP source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.php
+
+Generate Ruby source file based on configuration settings read from simple.conf::
+
+	ncrux-config gen simple.conf simple.rb
+
+Merge configuration fragments present in other-feature.conf into simple.conf::
+
+	ncrux-config merge simple.conf other-feature.conf
 
 HOMEPAGE
 ========

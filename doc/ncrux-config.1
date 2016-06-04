@@ -85,32 +85,158 @@ File to which generated output needs to be writtem. File extension of output_fil
 \fBgo\fP        Golang source file
 .sp
 \fBphp\fP       PHP source file
+.sp
+\fBrb\fP        Ruby source file
 .UNINDENT
 .UNINDENT
 .UNINDENT
 .SH EXAMPLES
 .sp
+Load configuration settings from simple.conf if present and display ncurses
+based configuration menu based on config_source file Nconfig and write the
+changes to simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config menu simple.conf
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Display ncurses based newer menu, read and write configuration changes to simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config menu\-n simple.conf Nconfig
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Display Gtk based menu, read and write configuration changes to simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config menu\-g simple.conf
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Display Qt based menu, read and write configuration changes to simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config menu\-q simple.conf Nconfig
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate C header file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.h
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate XML file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.xml
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate Perl source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.pl
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate Python source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.py
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate Golang source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.go
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate PHP source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config gen simple.conf simple.php
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .sp
+Generate Ruby source file based on configuration settings read from simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+ncrux\-config gen simple.conf simple.rb
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Merge configuration fragments present in other\-feature.conf into simple.conf:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
 ncrux\-config merge simple.conf other\-feature.conf
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .SH HOMEPAGE
 .sp
 More information about ncrux\-config project can be found at <\fI\%http://www.ncrux.com/project/ncrux\-config/\fP>
