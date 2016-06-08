@@ -35,7 +35,7 @@ ncrux-conf: $(ncrux-conf-objs)
 #
 # nconf
 #
-ncrux-nconf-objs      := nconf.o zconf.tab.o nconf.gui.o
+ncrux-nconf-objs      := ncrux-nconf.o zconf.tab.o ncrux-nconf.gui.o
 ncrux-nconf-ldflags  = $(shell \
                     pkg-config --libs menuw panelw ncursesw 2>/dev/null \
                     || pkg-config --libs menu panel ncurses 2>/dev/null \
@@ -46,9 +46,9 @@ ncrux-nconf: $(ncrux-nconf-objs)
 
 
 #
-# mconf
+# ncrux-mconf
 #
-ncrux-mconf-objs      := mconf.o zconf.tab.o $(lxdialog)
+ncrux-mconf-objs      := ncrux-mconf.o zconf.tab.o $(lxdialog)
 ncrux-mconf-ldflags = $(shell ./lxdialog/check-lxdialog.sh -ldflags)
 
 ncrux-mconf: $(ncrux-mconf-objs)
@@ -63,9 +63,9 @@ ncrux-kxgettext-objs	:= kxgettext.o zconf.tab.o
 
 
 #
-# gconf
+# ncrux-gconf
 #
-ncrux-gconf-objs	:= gconf.o zconf.tab.o
+ncrux-gconf-objs	:= ncrux-gconf.o zconf.tab.o
 
 ncrux-gconf-ldflags    = `pkg-config --libs gtk+-2.0 gmodule-2.0 libglade-2.0`
 ncrux-gconf-cflags     = `pkg-config --cflags gtk+-2.0 gmodule-2.0 libglade-2.0` \
@@ -76,14 +76,14 @@ ncrux-gconf-ldflags   += -lglade-2.0
 ncrux-gconf: $(ncrux-gconf-objs)
 	$(CC) $^ $(ncrux-gconf-ldflags) -o $@
 
-gconf.o: gconf.c
+ncrux-gconf.o: ncrux-gconf.c
 	$(CC) $(CFLAGS) $(ncrux-gconf-cflags) -c $^ -o $@
 
 
 #
-# qconf
+# ncrux-qconf
 #
-ncrux-qconf-cxxobjs	:= qconf.o
+ncrux-qconf-cxxobjs	:= ncrux-qconf.o
 ncrux-qconf-objs	:= zconf.tab.o
 ncrux-qconf-ldflags     = $(KC_QT_LIBS)
 ncrux-qconf-cxxflags   = $(KC_QT_CFLAGS)
@@ -92,8 +92,8 @@ ncrux-qconf: $(ncrux-qconf-objs)
 	$(CC) $^ $(ncrux-qconf-ldflags) -o $@
 
 
-LIBPATH=$(DESTDIR)/usr/lib/ncrux/ncrux-config
-SHPATH=$(DESTDIR)/usr/share/ncrux-config
+LIBPATH=$(DESTDIR)/usr/lib/ncrux/nconf
+SHPATH=$(DESTDIR)/usr/share/ncrux/nconf
 
 install:
 	install -m 0755 -d $(LIBPATH) $(SHPATH)

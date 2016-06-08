@@ -1,8 +1,8 @@
 
-var simple = require('./simple_conf.js');
+var simple = require('./simple_nconf.js');
 
-console.log('MYBOOL = ' + simple.config["MYBOOL"]);
-console.log('MYSTRING = ' + simple.config['MYSTRING']);
-console.log('MYTRISTATE = ' + simple.config['MYTRISTATE']);
-console.log('MYINT = ' + simple.config['MYINT']);
-console.log('MYHEX = ' + simple.config['MYHEX']);
+console.log('MYBOOL = ' + simple.nconf["MYBOOL"]);
+console.log('MYSTRING = ' + simple.nconf['MYSTRING']);
+console.log('MYTRISTATE = ' + simple.nconf['MYTRISTATE']);
+console.log('MYINT = ' + simple.nconf['MYINT']);
+console.log('MYHEX = ' + simple.nconf['MYHEX']);

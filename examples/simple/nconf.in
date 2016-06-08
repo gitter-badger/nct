@@ -1,5 +1,5 @@
 #
-# This is to test ncrux-config tools with various options
+# This is to test nconf tool with various options
 #
 
 mainmenu "Simple Project Configuration"

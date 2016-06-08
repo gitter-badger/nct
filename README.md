@@ -1,4 +1,4 @@
-nCrux Configuration Tool (ncrux-config)
+nCrux Configuration Tool (nconf)
 =======================================
 A tool to configure project settings using menu driven interface and to
 generate corresponding source code to be used in languages like C, Python etc.

@@ -6,7 +6,7 @@
 #
 
 #
-# Generates Python file with key/value pairs
+# Generates Ruby file with key/value pairs
 #
 
 awk '
@@ -14,8 +14,8 @@ BEGIN {
 	add_quotes_to_int = 0;
 	add_quotes_to_hex = 0;
 	convert_hex_to_int = 0;
-	printf "#\n#\n# Automatically generated file using ncrux-config; DO NOT EDIT.\n#\n#\n";
-	print "config = {\n";
+	printf "#\n#\n# Automatically generated file using nconf; DO NOT EDIT.\n#\n#\n";
+	print "$nconf = {\n";
 }
 
 END {
@@ -28,12 +28,12 @@ END {
 # Ignore comments
 /^#/ { next; }
 
-/^NCONFIG_/ {
+/^NCONF_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONFIG_ prefix
-	w1 = substr($0, 9, i-9);
+	# Strip off NCONF_ prefix
+	w1 = substr($0, 7, i-7);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -66,9 +66,9 @@ END {
 	}
 }
 
-# Python File with key/value pairs
-/^NCONFIG_/ {
-	print "\t\"" w1 "\" : " w2 ",";
+# Ruby File with key/value pairs
+/^NCONF_/ {
+	print "\t\"" w1 "\" => " w2 ",";
 	next;
 }
 

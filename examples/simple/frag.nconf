@@ -1,0 +1,3 @@
+NCONF_MYSTRING="Hello nCrux, How do you do?"
+NCONF_MYINT=56789
+NCONF_MYHEX=0xbead

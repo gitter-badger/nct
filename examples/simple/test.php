@@ -1,9 +1,9 @@
 <?php
-include 'simple_conf.php';
-echo 'MYBOOL = ' . $ncrux_config['MYBOOL'] . "\n";
-echo 'MYSTRING = ' . $ncrux_config['MYSTRING'] . "\n";
-echo 'MYTRISTATE = ' . $ncrux_config['MYTRISTATE'] . "\n";
-echo 'MYINT = ' . $ncrux_config['MYINT'] . "\n";
-echo 'MYHEX = ' . $ncrux_config['MYHEX'] . "\n";
+include 'simple_nconf.php';
+echo 'MYBOOL = ' . $nconf['MYBOOL'] . "\n";
+echo 'MYSTRING = ' . $nconf['MYSTRING'] . "\n";
+echo 'MYTRISTATE = ' . $nconf['MYTRISTATE'] . "\n";
+echo 'MYINT = ' . $nconf['MYINT'] . "\n";
+echo 'MYHEX = ' . $nconf['MYHEX'] . "\n";
 ?>
 

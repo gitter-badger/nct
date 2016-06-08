@@ -5,7 +5,7 @@
  * Derived from menuconfig.
  *
  */
-#include "nconf.h"
+#include "ncrux-nconf.h"
 
 /* a list of all the different widgets we use */
 attributes_t attributes[ATTR_MAX+1] = {0};

@@ -1,10 +1,10 @@
 #!/usr/bin/python
 
-import simple_conf
+import simple_nconf
 
-print "MYBOOL = ", simple_conf.config['MYBOOL']
-print "MYSTRING = ", simple_conf.config['MYSTRING']
-print "MYTRISTATE = ", simple_conf.config['MYTRISTATE']
-print "MYINT = ", simple_conf.config['MYINT']
-print "MYHEX = ", simple_conf.config['MYHEX']
+print "MYBOOL = ", simple_nconf.nconf['MYBOOL']
+print "MYSTRING = ", simple_nconf.nconf['MYSTRING']
+print "MYTRISTATE = ", simple_nconf.nconf['MYTRISTATE']
+print "MYINT = ", simple_nconf.nconf['MYINT']
+print "MYHEX = ", simple_nconf.nconf['MYHEX']
 

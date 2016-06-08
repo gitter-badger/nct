@@ -1,0 +1,108 @@
+#!/bin/bash
+
+#
+# Copyright (C) 2016 nCrux
+# Released under the terms of the GNU GPL v2.0.
+# Author: Aditi <aditi@ncrux.com>
+#
+
+usage() {
+	man -P cat nconf
+}
+
+
+if [ "$1" == "" ]; then
+	usage
+	exit 0
+fi
+
+if [ "$2" == "" ]; then
+	echo Please provide configuration file name
+	echo See \"man nconf\" for more details
+	exit 1 
+else
+	NCONF_FILE=$2
+fi 
+
+export PATH=/usr/lib/ncrux/nconf:$PATH
+
+CMD=$1
+
+case "$CMD" in
+menu|menu-n|menu-g|menu-q)
+	if [ "$3" == "" ]; then
+		NCONF_SRC=nconf.in
+	else
+		NCONF_SRC=$3
+	fi 
+
+	if [ ! -f $NCONF_SRC ]; then
+		echo Source file $NCONF_SRC is not present
+		exit 1
+	fi
+
+	export CONFIG_=NCONF_
+	export KCONFIG_CONFIG=$NCONF_FILE
+	;;
+gen)
+	if [ ! -f $NCONF_FILE ]; then
+		echo Configuration file $NCONF_FILE is not present
+		exit 1
+	fi
+
+	if [ "$3" == "" ]; then
+		echo Please provide output file name
+		exit 1
+	else
+		OUTPUT_FILE=$3
+	fi 
+
+	# Check output generator is available for requested file extension
+	EXT=${OUTPUT_FILE##*.}
+	;;
+merge)
+	if [ ! -f $NCONF_FILE ]; then
+		echo Configuration file $NCONF_FILE is not present
+		exit 1
+	fi
+
+	if [ "$3" == "" ]; then
+		echo Please provide configuration fragment file
+		exit 1
+	else
+		NCONF_FRAMENT=$3
+	fi 
+
+	if [ ! -f $NCONF_FRAMENT ]; then
+		echo Configuration fragment file $NCONF_FRAMENT is not present
+		exit 1
+	fi
+	;;
+*)
+	usage
+	exit 1
+esac
+
+
+case "$CMD" in
+menu)
+	ncrux-mconf -s $NCONF_SRC
+	;;
+menu-n)
+	ncrux-nconf $NCONF_SRC
+	;;
+menu-g)
+	export NCRUX_CONFIG_GLADE_FILE=/usr/share/ncrux/nconf/ncrux-gconf.glade
+	ncrux-gconf $NCONF_SRC
+	;;
+menu-q)
+	ncrux-qconf $NCONF_SRC
+	;;
+gen)
+	nconf-gen-$EXT $NCONF_FILE $OUTPUT_FILE
+	;;
+merge)
+	nconf-merge $NCONF_FILE $NCONF_FRAMENT
+	;;
+esac
+

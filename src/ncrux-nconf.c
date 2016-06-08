@@ -10,7 +10,7 @@
 #include <stdlib.h>
 
 #include "lkc.h"
-#include "nconf.h"
+#include "ncrux-nconf.h"
 #include <ctype.h>
 
 static const char nconf_global_help[] = N_(

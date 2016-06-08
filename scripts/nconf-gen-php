@@ -6,7 +6,7 @@
 #
 
 #
-# Generates Perl file with key/value pairs in a hash.
+# Generates PHP file with key/value pairs
 #
 
 awk '
@@ -14,12 +14,12 @@ BEGIN {
 	add_quotes_to_int = 0;
 	add_quotes_to_hex = 0;
 	convert_hex_to_int = 0;
-	printf "#\n#\n# Automatically generated file using ncrux-config; DO NOT EDIT.\n#\n#\n";
-	print "%ncrux_config = (\n";
+	printf "<?php\n#\n#\n# Automatically generated file using nconf; DO NOT EDIT.\n#\n#\n";
+	print "$nconf = array(\n";
 }
 
 END {
-	print ");\n";
+	print ");\n?>\n";
 }
 
 # Ignore blank lines
@@ -29,12 +29,12 @@ END {
 /^#/ { next; }
 
 # Split valid lines into two words: w1 and w2
-/^NCONFIG_/ {
+/^NCONF_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONFIG_ prefix
-	w1 = substr($0, 9, i-9);
+	# Strip off NCONF_ prefix
+	w1 = substr($0, 7, i-7);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -67,8 +67,8 @@ END {
 	}
 }
 
-# Perl File with key/value pairs in a hash
-/^NCONFIG_/ {
+# PHP File with key/value pairs
+/^NCONF_/ {
 	print "\t\"" w1 "\" => " w2 ",";
 	next;
 }

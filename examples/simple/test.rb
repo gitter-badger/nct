@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-require_relative 'simple_conf.rb'
+require_relative 'simple_nconf.rb'
 
-puts 'MYBOOL = ' + $ncrux_config["MYBOOL"] + "\n";
-puts 'MYSTRING = ' + $ncrux_config['MYSTRING'] + "\n";
-puts 'MYTRISTATE = ' + $ncrux_config['MYTRISTATE'] + "\n";
-puts 'MYINT = ' + "#{$ncrux_config['MYINT']}" + "\n";
-puts 'MYHEX = ' + "#{$ncrux_config['MYHEX']}" + "\n";
+puts 'MYBOOL = ' + $nconf["MYBOOL"] + "\n";
+puts 'MYSTRING = ' + $nconf['MYSTRING'] + "\n";
+puts 'MYTRISTATE = ' + $nconf['MYTRISTATE'] + "\n";
+puts 'MYINT = ' + "#{$nconf['MYINT']}" + "\n";
+puts 'MYHEX = ' + "#{$nconf['MYHEX']}" + "\n";

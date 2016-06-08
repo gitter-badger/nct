@@ -6,22 +6,20 @@
 #
 
 #
-# Generates golang file with key/value pairs in a map
+# Generates Ruby file with key/value pairs
 #
 
-export PKGNAME=`basename $2 | sed -e 's/.go$//g'`
-
-awk -v pkg_name=$PKGNAME '
+awk '
 BEGIN {
-	add_quotes_to_int = 1;
-	add_quotes_to_hex = 1;
+	add_quotes_to_int = 0;
+	add_quotes_to_hex = 0;
 	convert_hex_to_int = 0;
-	printf "package " pkg_name "\n//\n//\n// Automatically generated file using ncrux-config; DO NOT EDIT.\n//\n//\n";
-	print "var Config = map[string]string {\n";
+	printf "/*\n *\n * Automatically generated file using nconf; DO NOT EDIT.\n *\n */\n";
+	print "module.exports.nconf = {\n";
 }
 
 END {
-	print "}\n";
+	print "};\n";
 }
 
 # Ignore blank lines
@@ -30,13 +28,12 @@ END {
 # Ignore comments
 /^#/ { next; }
 
-# Split valid lines into two words: w1 and w2
-/^NCONFIG_/ {
+/^NCONF_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONFIG_ prefix
-	w1 = substr($0, 9, i-9);
+	# Strip off NCONF_ prefix
+	w1 = substr($0, 7, i-7);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -69,8 +66,8 @@ END {
 	}
 }
 
-# Golang File with key/value pairs in a map
-/^NCONFIG_/ {
+# Ruby File with key/value pairs
+/^NCONF_/ {
 	print "\t\"" w1 "\" : " w2 ",";
 	next;
 }

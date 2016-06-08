@@ -1,53 +1,54 @@
 
-CONF_FILE=simple.conf
-CONF_FRAGMENT_FILE=fragment.conf
-CONF_SRC=Nconfig
+CONF_FILE=simple.nconf
+CONF_FRAGMENT_FILE=frag.nconf
+NCONF_IN=nconf.in
 
 menu:
-	ncrux-config menu $(CONF_FILE) $(CONF_SRC)
+	nconf menu $(CONF_FILE) $(NCONF_IN)
 
 menu-n:
-	ncrux-config menu-n $(CONF_FILE)
+	nconf menu-n $(CONF_FILE)
 
 menu-g:
-	ncrux-config menu-g $(CONF_FILE) $(CONF_SRC)
+	nconf menu-g $(CONF_FILE) $(NCONF_IN)
 
 menu-q:
-	ncrux-config menu-q $(CONF_FILE) $(CONF_SRC)
+	nconf menu-q $(CONF_FILE) $(NCONF_IN)
 
 merge:
-	ncrux-config merge $(CONF_FILE) $(CONF_FRAGMENT_FILE)
+	nconf merge $(CONF_FILE) $(CONF_FRAGMENT_FILE)
 
 PHONY += menu menu-n menu-g menu-q
 
-$(CONF_FILE): menu
+$(CONF_FILE): $(NCONF_IN)
+	nconf menu $(CONF_FILE) $(NCONF_IN)
 
 gen-all: h pl py xml php go
 
 h: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.h
+	nconf gen $(CONF_FILE) simple_nconf.h
 
 pl: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.pl
+	nconf gen $(CONF_FILE) simple_nconf.pl
 
 py: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.py
+	nconf gen $(CONF_FILE) simple_nconf.py
 
 xml: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.xml
+	nconf gen $(CONF_FILE) simple_nconf.xml
 
 php: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.php
+	nconf gen $(CONF_FILE) simple_nconf.php
 
 go: $(CONF_FILE)
-	-mkdir -p simple_conf
-	ncrux-config gen $(CONF_FILE) simple_conf/simple_conf.go
+	-mkdir -p simple_nconf
+	nconf gen $(CONF_FILE) simple_nconf/simple_nconf.go
 
 rb: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.rb
+	nconf gen $(CONF_FILE) simple_nconf.rb
 
 js: $(CONF_FILE)
-	ncrux-config gen $(CONF_FILE) simple_conf.js
+	nconf gen $(CONF_FILE) simple_nconf.js
 
 test-all: test-h test-pl test-py test-xml test-php test-go test-rb test-js
 
@@ -62,7 +63,7 @@ test-py: py
 	python test.py
 
 test-xml: xml
-	xmllint simple_conf.xml
+	xmllint simple_nconf.xml
 
 test-php: php
 	php test.php
@@ -78,14 +79,14 @@ test-js: js
 
 
 clean:
-	rm -f simple.conf simple.conf.old
-	rm -f simple_conf.h test
-	rm -f simple_conf.pl
-	rm -f simple_conf.xml
-	rm -f simple_conf.py
-	rm -rf simple_conf/
-	rm -f simple_conf.php
-	rm -f simple_conf.py simple_conf.pyc
-	rm -f simple_conf.rb
-	rm -f simple_conf.js
+	rm -f simple.nconf simple.nconf.old
+	rm -f simple_nconf.h test
+	rm -f simple_nconf.pl
+	rm -f simple_nconf.xml
+	rm -f simple_nconf.py
+	rm -rf simple_nconf/
+	rm -f simple_nconf.php
+	rm -f simple_nconf.py simple_nconf.pyc
+	rm -f simple_nconf.rb
+	rm -f simple_nconf.js
 

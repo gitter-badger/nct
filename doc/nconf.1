@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH NCRUX-CONFIG 1 "2 Jun 2016" "0.2.0" "nCrux Configuration Tool"
+.TH NCONF 1 "9 Jun 2016" "0.2.0" "nCrux Configuration Tool"
 .SH NAME
-ncrux-config \- Menu driven tool to configure build settings of a project
+nconf \- Menu driven tool to configure build settings of a project
 .
 .nr rst2man-indent-level 0
 .
@@ -31,18 +31,21 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
 .SH SYNOPSIS
+.INDENT 0.0
+.INDENT 3.5
+nconf menu   config_file [config_source]
 .sp
-ncrux\-config menu   config_file [config_source]
+nconf menu\-n config_file [config_source]
 .sp
-ncrux\-config menu\-n config_file [config_source]
+nconf menu\-g config_file [config_source]
 .sp
-ncrux\-config menu\-g config_file [config_source]
+nconf menu\-q config_file [config_source]
 .sp
-ncrux\-config menu\-q config_file [config_source]
+nconf gen    config_file output_file
 .sp
-ncrux\-config gen    config_file output_file
-.sp
-ncrux\-config merge  config_file config_fragment
+nconf merge  config_file config_fragment
+.UNINDENT
+.UNINDENT
 .SH DESCRIPTION
 .sp
 A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.
@@ -102,7 +105,7 @@ changes to simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config menu simple.conf
+nconf menu simple.conf
 .ft P
 .fi
 .UNINDENT
@@ -114,7 +117,7 @@ Display ncurses based newer menu, read and write configuration changes to simple
 .sp
 .nf
 .ft C
-ncrux\-config menu\-n simple.conf Nconfig
+nconf menu\-n simple.conf Nconfig
 .ft P
 .fi
 .UNINDENT
@@ -126,7 +129,7 @@ Display Gtk based menu, read and write configuration changes to simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config menu\-g simple.conf
+nconf menu\-g simple.conf
 .ft P
 .fi
 .UNINDENT
@@ -138,7 +141,7 @@ Display Qt based menu, read and write configuration changes to simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config menu\-q simple.conf Nconfig
+nconf menu\-q simple.conf Nconfig
 .ft P
 .fi
 .UNINDENT
@@ -150,7 +153,7 @@ Generate C header file based on configuration settings read from simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.h
+nconf gen simple.conf simple.h
 .ft P
 .fi
 .UNINDENT
@@ -162,7 +165,7 @@ Generate XML file based on configuration settings read from simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.xml
+nconf gen simple.conf simple.xml
 .ft P
 .fi
 .UNINDENT
@@ -174,7 +177,7 @@ Generate Perl source file based on configuration settings read from simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.pl
+nconf gen simple.conf simple.pl
 .ft P
 .fi
 .UNINDENT
@@ -186,7 +189,7 @@ Generate Python source file based on configuration settings read from simple.con
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.py
+nconf gen simple.conf simple.py
 .ft P
 .fi
 .UNINDENT
@@ -198,7 +201,7 @@ Generate Golang source file based on configuration settings read from simple.con
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.go
+nconf gen simple.conf simple.go
 .ft P
 .fi
 .UNINDENT
@@ -210,7 +213,7 @@ Generate PHP source file based on configuration settings read from simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.php
+nconf gen simple.conf simple.php
 .ft P
 .fi
 .UNINDENT
@@ -222,7 +225,7 @@ Generate Ruby source file based on configuration settings read from simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.rb
+nconf gen simple.conf simple.rb
 .ft P
 .fi
 .UNINDENT
@@ -234,7 +237,7 @@ Generate JavaScript source file based on configuration settings read from simple
 .sp
 .nf
 .ft C
-ncrux\-config gen simple.conf simple.js
+nconf gen simple.conf simple.js
 .ft P
 .fi
 .UNINDENT
@@ -246,22 +249,22 @@ Merge configuration fragments present in other\-feature.conf into simple.conf:
 .sp
 .nf
 .ft C
-ncrux\-config merge simple.conf other\-feature.conf
+nconf merge simple.conf other\-feature.conf
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .SH HOMEPAGE
 .sp
-More information about ncrux\-config project can be found at <\fI\%http://www.ncrux.com/project/ncrux\-config/\fP>
+More information about nconf project can be found at <\fI\%http://www.ncrux.com/project/nconf/\fP>
 .SH AUTHOR
 .sp
-ncrux\-config package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
+nconf package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
 .sp
 This documentation is done by Aditi <\fI\%aditi@ncrux.com\fP>.
 .SH REPORTING BUGS
 .sp
-You can report bugs at <\fI\%https://github.com/ncrux/ncrux\-config/issues\fP>
+You can report bugs at <\fI\%https://github.com/ncrux/nconf/issues\fP>
 .SH COPYRIGHT
 .sp
 Copyright © 2016 nCrux.

@@ -1,4 +1,4 @@
-# ncrux-config help
+# nconf help
 
 ##Setting Menu/Window Title
 Place following in the top-level Nconfig file.

@@ -6,7 +6,7 @@
 #
 
 #
-# Generates Ruby file with key/value pairs
+# Generates Perl file with key/value pairs in a hash.
 #
 
 awk '
@@ -14,12 +14,12 @@ BEGIN {
 	add_quotes_to_int = 0;
 	add_quotes_to_hex = 0;
 	convert_hex_to_int = 0;
-	printf "/*\n *\n * Automatically generated file using ncrux-config; DO NOT EDIT.\n *\n */\n";
-	print "module.exports.config = {\n";
+	printf "#\n#\n# Automatically generated file using nconf; DO NOT EDIT.\n#\n#\n";
+	print "%nconf = (\n";
 }
 
 END {
-	print "};\n";
+	print ");\n";
 }
 
 # Ignore blank lines
@@ -28,12 +28,13 @@ END {
 # Ignore comments
 /^#/ { next; }
 
-/^NCONFIG_/ {
+# Split valid lines into two words: w1 and w2
+/^NCONF_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONFIG_ prefix
-	w1 = substr($0, 9, i-9);
+	# Strip off NCONF_ prefix
+	w1 = substr($0, 7, i-7);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -66,9 +67,9 @@ END {
 	}
 }
 
-# Ruby File with key/value pairs
-/^NCONFIG_/ {
-	print "\t\"" w1 "\" : " w2 ",";
+# Perl File with key/value pairs in a hash
+/^NCONF_/ {
+	print "\t\"" w1 "\" => " w2 ",";
 	next;
 }
 
