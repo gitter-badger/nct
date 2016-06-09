@@ -1,6 +1,6 @@
 .\" Man page generated from reStructuredText.
 .
-.TH NCONF 1 "9 Jun 2016" "0.2.0" "nCrux Configuration Tool"
+.TH NCONF 1 "10 Jun 2016" "0.2.0" "nCrux Configuration Tool"
 .SH NAME
 nconf \- Menu driven tool to configure build settings of a project
 .
@@ -32,7 +32,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .SH SYNOPSIS
 .sp
-nconf {menu|menu\-n|menu\-g|menu\-q} [\-c|\-\-config config_file] [\-i|\-\-input  config_input_file]
+nconf {menu|menu\-n|menu\-g|menu\-q} [\-c|\-\-config config_file] [\-i|\-\-input config_input_file]
 .sp
 nconf gen [\-c|\-\-config config_file] [\-o|\-\-output output_file]
 .sp
@@ -55,19 +55,21 @@ menu\-q  Start Qt based menu
 gen     Generate source code
 .sp
 merge   Merge given configuration fragment into base configuration file.
+.sp
+help    Display command usage information.
 .INDENT 0.0
 .TP
-.B config_file
-File containing current selection of build settings. In case if user saves the modified settings, this file gets overwritten with new settings.
+.BI \-c \ config_file\fP,\fB \ \-\-config \ config_file
+File containing current selection of configuration settings. The file ".nconf" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
 .TP
-.B config_source
-Source file for the menu interface. File name "Nconfig" is assumed, if not given.
+.BI \-i \ config_input_file\fP,\fB \ \-\-input \ config_input_file
+Top level configuration input file used for menu interface. The file "nconf.in" is assumed if this option is not given.
 .TP
-.B config_fragment
-File containing partial configuration settings.
+.BI \-f \ fragment_config_file\fP,\fB \ \-\-fragment \ fragment_config_file
+File containing partial configuration settings that need to be merged into main configuration file provided with option "\-c".
 .TP
-.B output_file
-File to which generated output needs to be writtem. File extension of output_file is recognized and appropriate code is generated. Recognized file extensions are:
+.BI \-o \ output_file\fP,\fB \ \-\-output \ output_file
+File to which generated output needs to be written. File extension of output_file is recognized and appropriate code is generated. Recognized file extensions are:
 .INDENT 7.0
 .INDENT 3.5
 \fBh\fP         C source header file
@@ -87,162 +89,177 @@ File to which generated output needs to be writtem. File extension of output_fil
 \fBjs\fP        JavaScript source file
 .UNINDENT
 .UNINDENT
+.TP
+.B \-h\fP,\fB  \-\-help
+Display this command usage.
 .UNINDENT
 .SH EXAMPLES
 .sp
-Load configuration settings from simple.conf if present and display ncurses
-based configuration menu based on config_source file Nconfig and write the
-changes to simple.conf:
+Load configuration settings from .nconf file if present and display ncurses\-based
+menu based on default configuration input file "nconf.in" and write the
+changes back to .nconf file:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu simple.conf
+nconf menu
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display ncurses based newer menu, read and write configuration changes to simple.conf:
+Display ncurses based newer menu, read and write configuration changes to simple.nconf:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-n simple.conf Nconfig
+nconf menu\-n \-c simple.nconf
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display Gtk based menu, read and write configuration changes to simple.conf:
+Display Gtk based menu using configuration input file "simple.in", read and write configuration changes to ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-g simple.conf
+nconf menu\-g \-i simple.in
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display Qt based menu, read and write configuration changes to simple.conf:
+Display Qt based menu using input file "simple.in", read and write configuration changes to simple.nconf:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-q simple.conf Nconfig
+nconf menu\-q \-c simple.nconf \-i simple.in
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate C header file based on configuration settings read from simple.conf:
+Generate C header file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.h
+nconf gen \-o simple.h
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate XML file based on configuration settings read from simple.conf:
+Generate XML file based on configuration settings read from simple.nconf:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.xml
+nconf gen \-c simple.nconf \-o simple.xml
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Perl source file based on configuration settings read from simple.conf:
+Generate Perl source file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.pl
+nconf gen \-o simple.pl
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Python source file based on configuration settings read from simple.conf:
+Generate Python source file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.py
+nconf gen \-o simple.py
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Golang source file based on configuration settings read from simple.conf:
+Generate Golang source file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.go
+nconf gen \-o simple.go
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate PHP source file based on configuration settings read from simple.conf:
+Generate PHP source file based on configuration settings read from simple.nconf:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.php
+nconf gen \-c simple.nconf \-o simple.php
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Ruby source file based on configuration settings read from simple.conf:
+Generate Ruby source file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.rb
+nconf gen \-o simple.rb
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate JavaScript source file based on configuration settings read from simple.conf:
+Generate JavaScript source file based on configuration settings read from ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen simple.conf simple.js
+nconf gen \-o simple.js
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Merge configuration fragments present in other\-feature.conf into simple.conf:
+Merge configuration fragments present in other\-feature.conf into ".nconf":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf merge simple.conf other\-feature.conf
+nconf merge \-f other\-feature.conf
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Merge configuration fragments present in other\-feature.conf into "simple.nconf":
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+nconf merge \-c simple.conf \-f other\-feature.conf
 .ft P
 .fi
 .UNINDENT
@@ -250,7 +267,7 @@ nconf merge simple.conf other\-feature.conf
 .SH HOMEPAGE
 .sp
 More information about nconf project can be found at <\fI\%http://www.ncrux.com/project/nconf/\fP>
-.SH AUTHOR
+.SH AUTHORS
 .sp
 nconf package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
 .sp

@@ -1,7 +1,7 @@
 DOCPATH=$(DESTDIR)/usr/share/doc/nconf
 MANPATH=$(DESTDIR)/usr/share/man
 
-all: nconf.html
+all: nconf.1 nconf.html
 
 nconf.1: nconf.1.md
 	rst2man $^ $@

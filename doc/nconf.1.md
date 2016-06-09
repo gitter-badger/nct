@@ -42,6 +42,8 @@ gen     Generate source code
 
 merge   Merge given configuration fragment into base configuration file.
 
+help	Display command usage information.
+
 -c config_file, --config config_file
  File containing current selection of configuration settings. The file ".nconf" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
 
@@ -70,6 +72,8 @@ merge   Merge given configuration fragment into base configuration file.
 
   **js**	JavaScript source file
 
+-h, --help
+  Display this command usage.
 
 EXAMPLES
 ========
