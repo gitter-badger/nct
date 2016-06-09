@@ -31,21 +31,14 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
 .SH SYNOPSIS
-.INDENT 0.0
-.INDENT 3.5
-nconf menu   config_file [config_source]
 .sp
-nconf menu\-n config_file [config_source]
+nconf {menu|menu\-n|menu\-g|menu\-q} [\-c|\-\-config config_file] [\-i|\-\-input  config_input_file]
 .sp
-nconf menu\-g config_file [config_source]
+nconf gen [\-c|\-\-config config_file] [\-o|\-\-output output_file]
 .sp
-nconf menu\-q config_file [config_source]
+nconf merge [\-c|\-\-config config_file] [\-f|\-\-fragment fragment_config_file]
 .sp
-nconf gen    config_file output_file
-.sp
-nconf merge  config_file config_fragment
-.UNINDENT
-.UNINDENT
+nconf help
 .SH DESCRIPTION
 .sp
 A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.

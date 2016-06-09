@@ -4,19 +4,22 @@
 
 mainmenu "Simple Project Configuration"
 
-
 config MYBOOL
 	bool "My Boolean Option"
+	default y
 
 config MYSTRING
 	string "Message"
+	default "Hello from Simple Project"
 
 config MYTRISTATE
 	tristate "My Tristate"
-	default m
+	default y
 
 config MYINT
 	int "My Integer"
+	default 1234
 
 config MYHEX
 	hex "My Hex Value"
+	default 0x9876

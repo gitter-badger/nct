@@ -3,7 +3,7 @@ Version:	0.2.0
 Release:	1
 Summary:	Menu driven tool to configure build settings of a project
 
-License:	GPLv2+
+License:	GPLv2
 URL:		http://www.ncrux.com/project/%{name}/
 Group:		Development/Tools
 #BuildRequires:	ncurses-devel

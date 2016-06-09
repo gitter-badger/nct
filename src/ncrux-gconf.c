@@ -1460,7 +1460,7 @@ int main(int ac, char *av[])
 	//add_pixmap_directory (PACKAGE_SOURCE_DIR "/pixmaps");
 
 	/* Determine GUI path */
-	env = getenv("NCRUX_CONFIG_GLADE_FILE");
+	env = getenv("NCRUX_GCONF_GLADE_FILE");
 	if (env)
 		glade_file = g_strdup(env);
 	else

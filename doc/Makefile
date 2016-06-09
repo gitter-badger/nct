@@ -6,8 +6,8 @@ all: nconf.html
 nconf.1: nconf.1.md
 	rst2man $^ $@
 
-nconf.html: nconf.1
-	man2html nconf.1 > nconf.html
+nconf.html: nconf.1.md
+	rst2html $^ $@
 
 install:
 	install -D -m 0644 nconf.1 $(MANPATH)/man1/nconf.1

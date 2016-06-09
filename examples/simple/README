@@ -1,0 +1,22 @@
+Simple demonstration of nconf usage
+===================================
+
+This project demonstrates usage of nCrux Configuration Tool (nconf) in terms of
+configuration menu, configuration fragment merging, code generation for various
+high-level languages.
+
+Use the following instructions to build and test the project.
+
+Configure project based on classic menu.
+
+	$ nconf menu
+
+Merge a configuration fragment to main configuration file.
+
+	$ make merge
+
+Generate code for all high-level languges and test them.
+
+	$ make test-all
+
+

@@ -6,38 +6,93 @@
 # Author: Aditi <aditi@ncrux.com>
 #
 
+
+PROG_NAME=`basename $0`
+
+OUTPUT_FILE=.nconf.h
+NCONF_FILE=.nconf
+NCONF_FRAG_FILE=
+NCONF_IN_FILE=nconf.in
+
 usage() {
-	man -P cat nconf
+	cat <<EOF
+Usage:
+	$PROG_NAME {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]
+
+	$PROG_NAME gen [-c|--config config_file] [-o|--output output_file]
+
+	$PROG_NAME merge [-c|--config config_file] [-f|--fragment fragment_config_file]
+
+	$PROG_NAME help
+
+	$PROG_NAME [-h|--help]
+
+EOF
+#	man -P cat nconf
 }
 
+opts=`getopt -o o:c:i:f:h --long output:,config:,input:,fragment:,help -n $PROG_NAME -- "$@"`
+if [ $? != 0 ] ; then exit 1; fi
+eval set -- "$opts"
 
-if [ "$1" == "" ]; then
-	usage
-	exit 0
+while true; do
+	case "$1" in
+
+	-o | --output)
+		OUTPUT_FILE=$2
+		shift 2
+		;;
+
+	-c | --config)
+		NCONF_FILE=$2
+		shift 2
+		;;
+
+	-i | --input)
+		NCONF_IN_FILE=$2
+		shift 2
+		;;
+
+	-f | --fragment)
+		NCONF_FRAG_FILE=$2
+		shift 2
+		;;
+
+	-h | --help)
+		usage
+		exit 0
+	   	;;
+
+	--)
+		shift
+		break
+		;;
+	*)
+		break;
+		;;
+	esac
+done
+
+
+# Expect only one mandatory argument
+if [ $# != 1 ]; then
+	echo Please provide sub-command only. More than one mandatory arguments seen: $*
+	exit 1
 fi
 
-if [ "$2" == "" ]; then
-	echo Please provide configuration file name
-	echo See \"man nconf\" for more details
-	exit 1 
-else
-	NCONF_FILE=$2
-fi 
+SUBCMD=$1
 
 export PATH=/usr/lib/ncrux/nconf:$PATH
 
-CMD=$1
-
-case "$CMD" in
+case "$SUBCMD" in
+help)
+	usage
+	exit 0
+   	;;
 menu|menu-n|menu-g|menu-q)
-	if [ "$3" == "" ]; then
-		NCONF_SRC=nconf.in
-	else
-		NCONF_SRC=$3
-	fi 
 
-	if [ ! -f $NCONF_SRC ]; then
-		echo Source file $NCONF_SRC is not present
+	if [ ! -f $NCONF_IN_FILE ]; then
+		echo Configuration input file $NCONF_IN_FILE is not present
 		exit 1
 	fi
 
@@ -50,13 +105,6 @@ gen)
 		exit 1
 	fi
 
-	if [ "$3" == "" ]; then
-		echo Please provide output file name
-		exit 1
-	else
-		OUTPUT_FILE=$3
-	fi 
-
 	# Check output generator is available for requested file extension
 	EXT=${OUTPUT_FILE##*.}
 	;;
@@ -66,43 +114,42 @@ merge)
 		exit 1
 	fi
 
-	if [ "$3" == "" ]; then
-		echo Please provide configuration fragment file
+	if [ "$NCONF_FRAG_FILE" == "" ]; then
+		echo Please provide configuration fragment file. Use "-f" option
 		exit 1
-	else
-		NCONF_FRAMENT=$3
 	fi 
 
-	if [ ! -f $NCONF_FRAMENT ]; then
-		echo Configuration fragment file $NCONF_FRAMENT is not present
+	if [ ! -f $NCONF_FRAG_FILE ]; then
+		echo Configuration fragment file $NCONF_FRAG_FILE is not present
 		exit 1
 	fi
 	;;
 *)
-	usage
+	echo Invalid sub-command \'$SUBCMD\'.
+	echo try \'$PROG_NAME --help\' for details.
 	exit 1
 esac
 
 
-case "$CMD" in
+case "$SUBCMD" in
 menu)
-	ncrux-mconf -s $NCONF_SRC
+	ncrux-mconf -s $NCONF_IN_FILE
 	;;
 menu-n)
-	ncrux-nconf $NCONF_SRC
+	ncrux-nconf $NCONF_IN_FILE
 	;;
 menu-g)
-	export NCRUX_CONFIG_GLADE_FILE=/usr/share/ncrux/nconf/ncrux-gconf.glade
-	ncrux-gconf $NCONF_SRC
+	export NCRUX_GCONF_GLADE_FILE=/usr/share/ncrux/nconf/ncrux-gconf.glade
+	ncrux-gconf $NCONF_IN_FILE
 	;;
 menu-q)
-	ncrux-qconf $NCONF_SRC
+	ncrux-qconf $NCONF_IN_FILE
 	;;
 gen)
 	nconf-gen-$EXT $NCONF_FILE $OUTPUT_FILE
 	;;
 merge)
-	nconf-merge $NCONF_FILE $NCONF_FRAMENT
+	nconf-merge $NCONF_FILE $NCONF_FRAG_FILE
 	;;
 esac
 

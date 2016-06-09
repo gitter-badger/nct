@@ -6,7 +6,7 @@
 Menu driven tool to configure build settings of a project
 ---------------------------------------------------------
 
-:Date:   9 Jun 2016
+:Date:   10 Jun 2016
 :Version: 0.2.0
 :Manual section: 1
 :Manual group: nCrux Configuration Tool
@@ -14,17 +14,14 @@ Menu driven tool to configure build settings of a project
 
 SYNOPSIS
 ========
-	nconf menu   config_file [config_source]
 
-	nconf menu-n config_file [config_source]
+nconf {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]
 
-	nconf menu-g config_file [config_source]
+nconf gen [-c|--config config_file] [-o|--output output_file]
 
-	nconf menu-q config_file [config_source]
+nconf merge [-c|--config config_file] [-f|--fragment fragment_config_file]
 
-	nconf gen    config_file output_file
-
-	nconf merge  config_file config_fragment
+nconf help
 
 
 DESCRIPTION
@@ -45,17 +42,17 @@ gen     Generate source code
 
 merge   Merge given configuration fragment into base configuration file.
 
-config_file
- File containing current selection of build settings. In case if user saves the modified settings, this file gets overwritten with new settings.
+-c config_file, --config config_file
+ File containing current selection of configuration settings. The file ".nconf" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
 
-config_source
- Source file for the menu interface. File name "Nconfig" is assumed, if not given.
+-i config_input_file, --input config_input_file
+ Top level configuration input file used for menu interface. The file "nconf.in" is assumed if this option is not given.
 
-config_fragment
- File containing partial configuration settings.
+-f fragment_config_file, --fragment fragment_config_file
+ File containing partial configuration settings that need to be merged into main configuration file provided with option "-c".
 
-output_file
- File to which generated output needs to be writtem. File extension of output_file is recognized and appropriate code is generated. Recognized file extensions are:
+-o output_file, --output output_file
+ File to which generated output needs to be written. File extension of output_file is recognized and appropriate code is generated. Recognized file extensions are:
 
   **h**		C source header file
 
@@ -77,66 +74,70 @@ output_file
 EXAMPLES
 ========
 
-Load configuration settings from simple.conf if present and display ncurses
-based configuration menu based on config_source file Nconfig and write the
-changes to simple.conf::
+Load configuration settings from .nconf file if present and display ncurses-based
+menu based on default configuration input file "nconf.in" and write the
+changes back to .nconf file::
 
-	nconf menu simple.conf
+	nconf menu
 
-Display ncurses based newer menu, read and write configuration changes to simple.conf::
+Display ncurses based newer menu, read and write configuration changes to simple.nconf::
 
-	nconf menu-n simple.conf Nconfig
+	nconf menu-n -c simple.nconf
 
-Display Gtk based menu, read and write configuration changes to simple.conf::
+Display Gtk based menu using configuration input file "simple.in", read and write configuration changes to ".nconf"::
 
-	nconf menu-g simple.conf
+	nconf menu-g -i simple.in
 
-Display Qt based menu, read and write configuration changes to simple.conf::
+Display Qt based menu using input file "simple.in", read and write configuration changes to simple.nconf::
 
-	nconf menu-q simple.conf Nconfig
+	nconf menu-q -c simple.nconf -i simple.in
 
-Generate C header file based on configuration settings read from simple.conf::
+Generate C header file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.h
+	nconf gen -o simple.h
 
-Generate XML file based on configuration settings read from simple.conf::
+Generate XML file based on configuration settings read from simple.nconf::
 
-	nconf gen simple.conf simple.xml
+	nconf gen -c simple.nconf -o simple.xml
 
-Generate Perl source file based on configuration settings read from simple.conf::
+Generate Perl source file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.pl
+	nconf gen -o simple.pl
 
-Generate Python source file based on configuration settings read from simple.conf::
+Generate Python source file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.py
+	nconf gen -o simple.py
 
-Generate Golang source file based on configuration settings read from simple.conf::
+Generate Golang source file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.go
+	nconf gen -o simple.go
 
-Generate PHP source file based on configuration settings read from simple.conf::
+Generate PHP source file based on configuration settings read from simple.nconf::
 
-	nconf gen simple.conf simple.php
+	nconf gen -c simple.nconf -o simple.php
 
-Generate Ruby source file based on configuration settings read from simple.conf::
+Generate Ruby source file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.rb
+	nconf gen -o simple.rb
 
-Generate JavaScript source file based on configuration settings read from simple.conf::
+Generate JavaScript source file based on configuration settings read from ".nconf"::
 
-	nconf gen simple.conf simple.js
+	nconf gen -o simple.js
 
-Merge configuration fragments present in other-feature.conf into simple.conf::
+Merge configuration fragments present in other-feature.conf into ".nconf"::
 
-	nconf merge simple.conf other-feature.conf
+	nconf merge -f other-feature.conf
+
+Merge configuration fragments present in other-feature.conf into "simple.nconf"::
+
+	nconf merge -c simple.conf -f other-feature.conf
 
 HOMEPAGE
 ========
 More information about nconf project can be found at <http://www.ncrux.com/project/nconf/>
 
-AUTHOR
-======
+AUTHORS
+=======
 nconf package is developed by nCrux <http://www.ncrux.com/>.
 
 This documentation is done by Aditi <aditi@ncrux.com>.

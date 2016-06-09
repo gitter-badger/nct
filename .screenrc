@@ -1,0 +1,35 @@
+#
+# Session Name
+#
+sessionname nconf
+
+shell bash
+scrollback 1024
+
+#
+# Terminals
+#
+screen -t make
+chdir scripts
+screen -t scripts
+chdir ../examples/simple
+screen -t example
+chdir ../../doc
+screen -t doc
+chdir ../src
+screen -t src
+chdir ..
+screen -t misc
+
+#
+# Key Bindings
+#
+# Ctrl + Right
+bindkey "\033[1;5C" next
+# Ctrl + Left
+bindkey "\033[1;5D" prev 
+
+#
+# Status Bar
+#
+caption always '%{= Mk}  %-w%{.mk}%{.Gk}%n %t%{.mW}%{.Mk}%+w %=%{.kW}%C '

@@ -1,54 +1,37 @@
-
-CONF_FILE=simple.nconf
+#
+# Simple demonstration of nCrux Configuration Tool (nconf)
+#
 CONF_FRAGMENT_FILE=frag.nconf
-NCONF_IN=nconf.in
-
-menu:
-	nconf menu $(CONF_FILE) $(NCONF_IN)
-
-menu-n:
-	nconf menu-n $(CONF_FILE)
-
-menu-g:
-	nconf menu-g $(CONF_FILE) $(NCONF_IN)
-
-menu-q:
-	nconf menu-q $(CONF_FILE) $(NCONF_IN)
 
 merge:
-	nconf merge $(CONF_FILE) $(CONF_FRAGMENT_FILE)
-
-PHONY += menu menu-n menu-g menu-q
-
-$(CONF_FILE): $(NCONF_IN)
-	nconf menu $(CONF_FILE) $(NCONF_IN)
+	nconf merge -f $(CONF_FRAGMENT_FILE)
 
 gen-all: h pl py xml php go
 
-h: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.h
+h:
+	nconf gen -o simple_nconf.h
 
-pl: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.pl
+pl:
+	nconf gen -o simple_nconf.pl
 
-py: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.py
+py:
+	nconf gen -o simple_nconf.py
 
-xml: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.xml
+xml:
+	nconf gen -o simple_nconf.xml
 
-php: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.php
+php:
+	nconf gen -o simple_nconf.php
 
-go: $(CONF_FILE)
+go:
 	-mkdir -p simple_nconf
-	nconf gen $(CONF_FILE) simple_nconf/simple_nconf.go
+	nconf gen -o simple_nconf/simple_nconf.go
 
-rb: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.rb
+rb:
+	nconf gen -o simple_nconf.rb
 
-js: $(CONF_FILE)
-	nconf gen $(CONF_FILE) simple_nconf.js
+js:
+	nconf gen -o simple_nconf.js
 
 test-all: test-h test-pl test-py test-xml test-php test-go test-rb test-js
 
@@ -79,7 +62,7 @@ test-js: js
 
 
 clean:
-	rm -f simple.nconf simple.nconf.old
+	rm -f .nconf .nconf.old
 	rm -f simple_nconf.h test
 	rm -f simple_nconf.pl
 	rm -f simple_nconf.xml
