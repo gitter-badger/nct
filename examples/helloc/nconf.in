@@ -1,0 +1,24 @@
+#
+# nCrux Configuration Tool enabled "Hello C" example project.
+#
+# This example project demonstartes how nCrux configuration tool
+# can be leveraged in a C project.
+#
+
+mainmenu "Hello C Project"
+
+menu "Package Information"
+
+config PKG_NAME
+	string "Package Name"
+	default "helloc"
+
+config PKG_VER
+	string "Version"
+	default "0.1.0"
+
+endmenu
+
+
+source "src/nconf.in"
+

@@ -73,14 +73,20 @@ while true; do
 	esac
 done
 
-
 # Expect only one mandatory argument
-if [ $# != 1 ]; then
-	echo Please provide sub-command only. More than one mandatory arguments seen: $*
-	exit 1
-fi
+case "$#" in
+	0)
+		SUBCMD=menu
+		;;
+	1)
+		SUBCMD=$1
+		;;
+	*)
+		echo Please provide sub-command only. More than one mandatory arguments seen: $*
+		exit 1
+		;;
+esac
 
-SUBCMD=$1
 
 export PATH=/usr/lib/ncrux/nconf:$PATH
 
