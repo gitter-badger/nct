@@ -1,6 +1,6 @@
 BIN += ncrux-mconf
 BIN += ncrux-nconf
-#BIN += ncrux-conf
+BIN += ncrux-conf
 #BIN += ncrux-kxgettext
 #BIN += ncrux-qconf
 ifneq ($(shell ls /usr/include/libglade-2.0/glade/glade.h 2>/dev/null),)

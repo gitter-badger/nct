@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
 <title>nconf</title>
-<meta name="date" content="10 Jun 2016" />
+<meta name="date" content="13 Jun 2016" />
 <style type="text/css">
 
 /*
@@ -347,7 +347,7 @@ ul.auto-toc {
 <col class="docinfo-content" />
 <tbody valign="top">
 <tr><th class="docinfo-name">Date:</th>
-<td>10 Jun 2016</td></tr>
+<td>13 Jun 2016</td></tr>
 <tr><th class="docinfo-name">Version:</th>
 <td>0.2.0</td></tr>
 <tr class="field"><th class="docinfo-name">Manual section:</th><td class="field-body">1</td>
@@ -358,6 +358,7 @@ ul.auto-toc {
 </table>
 <div class="section" id="synopsis">
 <h1>SYNOPSIS</h1>
+<p>nconf nomenu [-m|--mode {alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]</p>
 <p>nconf {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]</p>
 <p>nconf gen [-c|--config config_file] [-o|--output output_file]</p>
 <p>nconf merge [-c|--config config_file] [-f|--fragment fragment_config_file]</p>
@@ -369,6 +370,7 @@ ul.auto-toc {
 </div>
 <div class="section" id="options">
 <h1>OPTIONS</h1>
+<p>nomenu  Dislpay no interactive menu and generate configuration file based on mode specified.</p>
 <p>menu    Start terminal based menu (classic)</p>
 <p>menu-n  Start terminal based menu (new)</p>
 <p>menu-g  Start gtk based menu</p>
@@ -380,6 +382,17 @@ ul.auto-toc {
 <col class="option" />
 <col class="description" />
 <tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-m <var>mode_str</var></span>, <span class="option">--mode <var>mode_str</var></span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td><p class="first">This option is valid only for &quot;nomenu&quot; subcommand. Following are the modes supported. The mode &quot;alldef&quot; is assumed if this option is not given.</p>
+<blockquote class="last">
+<p><strong>alldef</strong>    Select all default values for each configuration element.</p>
+<p><strong>allno</strong>     Unselect all boolean and tristate configuration elements.</p>
+<p><strong>allyes</strong>    Select all boolean and tristate configuration elements.</p>
+<p><strong>random</strong>    Randomly select boolean and tristate configuration elements.</p>
+</blockquote>
+</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-c <var>config_file</var></span>, <span class="option">--config <var>config_file</var></span></kbd></td>
 </tr>

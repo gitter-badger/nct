@@ -6,7 +6,7 @@
 Menu driven tool to configure build settings of a project
 ---------------------------------------------------------
 
-:Date:   10 Jun 2016
+:Date:   13 Jun 2016
 :Version: 0.2.0
 :Manual section: 1
 :Manual group: nCrux Configuration Tool
@@ -14,6 +14,8 @@ Menu driven tool to configure build settings of a project
 
 SYNOPSIS
 ========
+
+nconf nomenu [-m|--mode {alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]
 
 nconf {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]
 
@@ -30,6 +32,8 @@ A tool to configure build settings of a project using menu driven interface and 
 
 OPTIONS
 =======
+nomenu	Dislpay no interactive menu and generate configuration file based on mode specified.
+
 menu    Start terminal based menu (classic)
 
 menu-n  Start terminal based menu (new)
@@ -43,6 +47,17 @@ gen     Generate source code
 merge   Merge given configuration fragment into base configuration file.
 
 help	Display command usage information.
+
+-m mode_str, --mode mode_str
+ This option is valid only for "nomenu" subcommand. Following are the modes supported. The mode "alldef" is assumed if this option is not given.
+
+  **alldef**	Select all default values for each configuration element.
+
+  **allno**	Unselect all boolean and tristate configuration elements.
+
+  **allyes**	Select all boolean and tristate configuration elements.
+
+  **random**	Randomly select boolean and tristate configuration elements.
 
 -c config_file, --config config_file
  File containing current selection of configuration settings. The file ".nconf" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.

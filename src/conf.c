@@ -529,7 +529,7 @@ int main(int ac, char **av)
 			gettimeofday(&now, NULL);
 			seed = (unsigned int)((now.tv_sec + 1) * (now.tv_usec + 1));
 
-			seed_env = getenv("KCONFIG_SEED");
+			seed_env = getenv("NCONF_NOMENU_SEED");
 			if( seed_env && *seed_env ) {
 				char *endp;
 				int tmp = (int)strtol(seed_env, &endp, 0);
@@ -537,7 +537,7 @@ int main(int ac, char **av)
 					seed = tmp;
 				}
 			}
-			fprintf( stderr, "KCONFIG_SEED=0x%X\n", seed );
+			fprintf( stderr, "NCONF_NOMENU_SEED=0x%X\n", seed );
 			srand(seed);
 			break;
 		}

@@ -69,9 +69,9 @@ static void conf_message(const char *fmt, ...)
 
 const char *conf_get_configname(void)
 {
-	char *name = getenv("KCONFIG_CONFIG");
+	char *name = getenv("NCONF_CONFIG");
 
-	return name ? name : ".config";
+	return name ? name : ".nconf";
 }
 
 const char *conf_get_autoconfig_name(void)
