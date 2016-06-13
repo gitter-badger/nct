@@ -6,21 +6,22 @@
 #
 
 #
-# Generates an XML file for a given configuration file
+# Generates golang file with key/value pairs in a map
 #
 
-awk '
+export PKGNAME=`basename $2 | sed -e 's/.go$//g'`
+
+awk -v pkg_name=$PKGNAME '
 BEGIN {
-	add_quotes_to_int = 0;
-	add_quotes_to_hex = 0;
+	add_quotes_to_int = 1;
+	add_quotes_to_hex = 1;
 	convert_hex_to_int = 0;
-	printf "<?xml version=\"1.0\" standalone=\"yes\"?>\n\n"
-	printf "<!--\n Automatically generated file using nconf; DO NOT EDIT.\n-->\n";
-	printf "<nconf>\n";
+	printf "package " pkg_name "\n//\n//\n// Automatically generated file using nCrux Configuration Tool (nct)\n// DO NOT EDIT.\n//\n//\n";
+	print "var Config = map[string]string {\n";
 }
 
 END {
-	printf "</nconf>\n";
+	print "}\n";
 }
 
 # Ignore blank lines
@@ -30,12 +31,12 @@ END {
 /^#/ { next; }
 
 # Split valid lines into two words: w1 and w2
-/^NCONF_/ {
+/^NCT_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONF_ prefix
-	w1 = substr($0, 7, i-7);
+	# Strip off NCT_ prefix
+	w1 = substr($0, 5, i-5);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -68,19 +69,9 @@ END {
 	}
 }
 
-
-/* XML File */
-{
-	if (w2 ~ /^"/) {
-
-		# String Value
-		len = length(w2);
-		w2 = substr(w2,2,len-2);
-
-		# FIXME: encode the string
-	}
-
-	print "\t<" w1 ">" w2 "</" w1 ">";
+# Golang File with key/value pairs in a map
+/^NCT_/ {
+	print "\t\"" w1 "\" : " w2 ",";
 	next;
 }
 

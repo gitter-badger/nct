@@ -1,0 +1,4 @@
+.nct
+*.o
+src/helloc
+src/helloc_nct.h

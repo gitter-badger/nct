@@ -1,8 +1,8 @@
 #!/bin/sh
 #
 #  Simplified to just merge given config fragment into parent config.
-#  Renamed to nconf-merge to avoid conflicts with original.
-#  Minor changes to align with nconf tool.
+#  Renamed to nct-merge to avoid conflicts with original.
+#  Minor changes to align with nct tool.
 #    Aditi <aditi@ncrux.com>
 #
 #  merge_config.sh - Takes a list of config fragment values, and merges
@@ -44,7 +44,7 @@ if [ ! -r "$BASEFILE" ]; then
 fi
 
 MERGE_LIST=$*
-SED_CONFIG_EXP="s/^\(# \)\{0,1\}\(NCONF_[a-zA-Z0-9_]*\)[= ].*/\2/p"
+SED_CONFIG_EXP="s/^\(# \)\{0,1\}\(NCT_[a-zA-Z0-9_]*\)[= ].*/\2/p"
 TMP_FILE=$(mktemp ./.tmp.config.XXXXXXXXXX)
 
 echo "Using $BASEFILE as base"

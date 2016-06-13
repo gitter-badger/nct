@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 
-do 'simple_nconf.pl';
+do 'simple_nct.pl';
 
-print "MYBOOL = $nconf{'MYBOOL'}\n";
-print "MYSTRING = $nconf{'MYSTRING'}\n";
-print "MYTRISTATE = $nconf{'MYTRISTATE'}\n";
-print "MYINT = $nconf{'MYINT'}\n";
-print "MYHEX = $nconf{'MYHEX'}\n";
+print "MYBOOL = $nct{'MYBOOL'}\n";
+print "MYSTRING = $nct{'MYSTRING'}\n";
+print "MYTRISTATE = $nct{'MYTRISTATE'}\n";
+print "MYINT = $nct{'MYINT'}\n";
+print "MYHEX = $nct{'MYHEX'}\n";
 
 

@@ -14,8 +14,8 @@ BEGIN {
 	add_quotes_to_int = 0;
 	add_quotes_to_hex = 0;
 	convert_hex_to_int = 0;
-	printf "<?php\n#\n#\n# Automatically generated file using nconf; DO NOT EDIT.\n#\n#\n";
-	print "$nconf = array(\n";
+	printf "<?php\n#\n#\n# Automatically generated file using nCrux Configuration Tool (nct).\n# DO NOT EDIT.\n#\n#\n";
+	print "$nct = array(\n";
 }
 
 END {
@@ -29,12 +29,12 @@ END {
 /^#/ { next; }
 
 # Split valid lines into two words: w1 and w2
-/^NCONF_/ {
+/^NCT_/ {
 
 	i = index($0, "=");
 
-	# Strip off NCONF_ prefix
-	w1 = substr($0, 7, i-7);
+	# Strip off NCT_ prefix
+	w1 = substr($0, 5, i-5);
 	w2 = substr($0, i+1);
 
 	if (w2 ~ /^0x/) {
@@ -68,7 +68,7 @@ END {
 }
 
 # PHP File with key/value pairs
-/^NCONF_/ {
+/^NCT_/ {
 	print "\t\"" w1 "\" => " w2 ",";
 	next;
 }

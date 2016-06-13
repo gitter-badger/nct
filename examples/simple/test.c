@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "simple_nconf.h"
+#include "simple_nct.h"
 
 int main(int argc, char *argv[])
 {
-	printf("MYBOOL = %d\n", NCONF_MYBOOL);
-	printf("MYSTRING = %s\n", NCONF_MYSTRING);
-	printf("MYTRISTATE = %d\n", NCONF_MYTRISTATE);
-	printf("MYINT = %d\n", NCONF_MYINT);
-	printf("MYHEX = 0x%x\n", NCONF_MYHEX);
+	printf("MYBOOL = %d\n", NCT_MYBOOL);
+	printf("MYSTRING = %s\n", NCT_MYSTRING);
+	printf("MYTRISTATE = %d\n", NCT_MYTRISTATE);
+	printf("MYINT = %d\n", NCT_MYINT);
+	printf("MYHEX = 0x%x\n", NCT_MYHEX);
 	return 0;
 }

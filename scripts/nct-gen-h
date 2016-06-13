@@ -12,7 +12,7 @@
 awk '
 BEGIN {
 	FS = "=";
-	printf "/*\n *\n * Automatically generated file using nconf; DO NOT EDIT.\n *\n */\n";
+	printf "/*\n *\n * Automatically generated file using nCrux Configuration Tool (nct).\n * DO NOT EDIT.\n *\n */\n";
 }
 
 # Ignore blank lines

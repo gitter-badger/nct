@@ -1,4 +1,4 @@
-Name:		nconf
+Name:		nct
 Version:	0.2.0
 Release:	1
 Summary:	Menu driven tool to configure build settings of a project

@@ -9,10 +9,10 @@
 
 PROG_NAME=`basename $0`
 
-OUTPUT_FILE=.nconf.h
-NCONF_FILE=.nconf
-NCONF_FRAG_FILE=
-NCONF_IN_FILE=nconf.in
+OUTPUT_FILE=.nct.h
+NCT_FILE=.nct
+NCT_FRAG_FILE=
+NCT_IN_FILE=nct.in
 NOMENU_MODE=alldef
 
 usage() {
@@ -31,7 +31,7 @@ Usage:
 	$PROG_NAME [-h|--help]
 
 EOF
-#	man -P cat nconf
+#	man -P cat nct
 }
 
 opts=`getopt -o o:c:i:f:m:h --long mode:,output:,config:,input:,fragment:,help -n $PROG_NAME -- "$@"`
@@ -52,17 +52,17 @@ while true; do
 		;;
 
 	-c | --config)
-		NCONF_FILE=$2
+		NCT_FILE=$2
 		shift 2
 		;;
 
 	-i | --input)
-		NCONF_IN_FILE=$2
+		NCT_IN_FILE=$2
 		shift 2
 		;;
 
 	-f | --fragment)
-		NCONF_FRAG_FILE=$2
+		NCT_FRAG_FILE=$2
 		shift 2
 		;;
 
@@ -118,7 +118,7 @@ if [ "$SUBCMD" == "nomenu" ]; then
 fi
 
 
-export PATH=/usr/lib/ncrux/nconf:$PATH
+export PATH=/usr/lib/ncrux/nct:$PATH
 
 case "$SUBCMD" in
 help)
@@ -127,17 +127,17 @@ help)
    	;;
 nomenu|menu|menu-n|menu-g|menu-q)
 
-	if [ ! -f $NCONF_IN_FILE ]; then
-		echo Configuration input file $NCONF_IN_FILE is not present
+	if [ ! -f $NCT_IN_FILE ]; then
+		echo Configuration input file $NCT_IN_FILE is not present
 		exit 1
 	fi
 
-	#export CONFIG_=NCONF_
-	#export NCONF_CONFIG=$NCONF_FILE
+	#export CONFIG_=NCT_
+	#export NCT_CONFIG=$NCT_FILE
 	;;
 gen)
-	if [ ! -f $NCONF_FILE ]; then
-		echo Configuration file $NCONF_FILE is not present
+	if [ ! -f $NCT_FILE ]; then
+		echo Configuration file $NCT_FILE is not present
 		exit 1
 	fi
 
@@ -145,18 +145,18 @@ gen)
 	EXT=${OUTPUT_FILE##*.}
 	;;
 merge)
-	if [ ! -f $NCONF_FILE ]; then
-		echo Configuration file $NCONF_FILE is not present
+	if [ ! -f $NCT_FILE ]; then
+		echo Configuration file $NCT_FILE is not present
 		exit 1
 	fi
 
-	if [ "$NCONF_FRAG_FILE" == "" ]; then
+	if [ "$NCT_FRAG_FILE" == "" ]; then
 		echo Please provide configuration fragment file. Use "-f" option
 		exit 1
 	fi 
 
-	if [ ! -f $NCONF_FRAG_FILE ]; then
-		echo Configuration fragment file $NCONF_FRAG_FILE is not present
+	if [ ! -f $NCT_FRAG_FILE ]; then
+		echo Configuration fragment file $NCT_FRAG_FILE is not present
 		exit 1
 	fi
 	;;
@@ -169,26 +169,26 @@ esac
 
 case "$SUBCMD" in
 nomenu)
-	ncrux-conf -s $NCONF_IN_FILE $NOMENU_OPT
+	ncrux-conf -s $NCT_IN_FILE $NOMENU_OPT
 	;;
 menu)
-	ncrux-mconf -s $NCONF_IN_FILE
+	ncrux-mconf -s $NCT_IN_FILE
 	;;
 menu-n)
-	ncrux-nconf $NCONF_IN_FILE
+	ncrux-nconf $NCT_IN_FILE
 	;;
 menu-g)
-	#export NCRUX_GCONF_GLADE_FILE=/usr/share/ncrux/nconf/ncrux-gconf.glade
-	ncrux-gconf $NCONF_IN_FILE
+	#export NCRUX_GCONF_GLADE_FILE=/usr/share/ncrux/nct/ncrux-gconf.glade
+	ncrux-gconf $NCT_IN_FILE
 	;;
 menu-q)
-	ncrux-qconf $NCONF_IN_FILE
+	ncrux-qconf $NCT_IN_FILE
 	;;
 gen)
-	nconf-gen-$EXT $NCONF_FILE $OUTPUT_FILE
+	nct-gen-$EXT $NCT_FILE $OUTPUT_FILE
 	;;
 merge)
-	nconf-merge $NCONF_FILE $NCONF_FRAG_FILE
+	nct-merge $NCT_FILE $NCT_FRAG_FILE
 	;;
 esac
 

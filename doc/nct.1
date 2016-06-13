@@ -1,8 +1,8 @@
 .\" Man page generated from reStructuredText.
 .
-.TH NCONF 1 "13 Jun 2016" "0.2.0" "nCrux Configuration Tool"
+.TH NCT 1 "13 Jun 2016" "0.2.0" "nCrux Configuration Tool"
 .SH NAME
-nconf \- Menu driven tool to configure build settings of a project
+nct \- Menu driven tool to configure build settings of a project
 .
 .nr rst2man-indent-level 0
 .
@@ -32,21 +32,21 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 ..
 .SH SYNOPSIS
 .sp
-nconf nomenu [\-m|\-\-mode {alldef|allno|allyes|random}] [\-c|\-\-config config_file] [\-i|\-\-input config_input_file]
+nct nomenu [\-m|\-\-mode {alldef|allno|allyes|random}] [\-c|\-\-config config_file] [\-i|\-\-input config_input_file]
 .sp
-nconf {menu|menu\-n|menu\-g|menu\-q} [\-c|\-\-config config_file] [\-i|\-\-input config_input_file]
+nct {menu|menu\-n|menu\-g|menu\-q} [\-c|\-\-config config_file] [\-i|\-\-input config_input_file]
 .sp
-nconf gen [\-c|\-\-config config_file] [\-o|\-\-output output_file]
+nct gen [\-c|\-\-config config_file] [\-o|\-\-output output_file]
 .sp
-nconf merge [\-c|\-\-config config_file] [\-f|\-\-fragment fragment_config_file]
+nct merge [\-c|\-\-config config_file] [\-f|\-\-fragment fragment_config_file]
 .sp
-nconf help
+nct help
 .SH DESCRIPTION
 .sp
-A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.
+This tool is based on kconfig tool available as part of standard Linux kernel sources. This project makes kconfig standalone and usable in any project leveraging intuitive menu based configuration. In addition to that, this tool can generate source code in various high level languages like C, Go, Python, PHP, Perl, JavaScript etc to make the configuration parameters readily usable in terms of key/value pairs. The configuration file can be directly included in a Makefile to achieve conditional compilation. The configuration file can also be included in bash shell script as is. This tool also supports "merge" command to merge partial configuration file into a base configuration file. The nCrux Make Tool (nmt) tool is a great companion with this tool to make the build system ridiculously simple.
 .SH OPTIONS
 .sp
-nomenu  Dislpay no interactive menu and generate configuration file based on mode specified.
+nomenu  Display no interactive menu and generate or update configuration file based on mode specified.
 .sp
 menu    Start terminal based menu (classic)
 .sp
@@ -64,7 +64,7 @@ help    Display command usage information.
 .INDENT 0.0
 .TP
 .BI \-m \ mode_str\fP,\fB \ \-\-mode \ mode_str
-This option is valid only for "nomenu" subcommand. Following are the modes supported. The mode "alldef" is assumed if this option is not given.
+This option is valid only for "nomenu" sub\-command. Following are the modes supported. The mode "alldef" is assumed if this option is not given.
 .INDENT 7.0
 .INDENT 3.5
 \fBalldef\fP    Select all default values for each configuration element.
@@ -78,10 +78,10 @@ This option is valid only for "nomenu" subcommand. Following are the modes suppo
 .UNINDENT
 .TP
 .BI \-c \ config_file\fP,\fB \ \-\-config \ config_file
-File containing current selection of configuration settings. The file ".nconf" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
+File containing current selection of configuration settings. The file ".nct" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
 .TP
 .BI \-i \ config_input_file\fP,\fB \ \-\-input \ config_input_file
-Top level configuration input file used for menu interface. The file "nconf.in" is assumed if this option is not given.
+Top level configuration input file used for menu interface. The file "nct.in" is assumed if this option is not given.
 .TP
 .BI \-f \ fragment_config_file\fP,\fB \ \-\-fragment \ fragment_config_file
 File containing partial configuration settings that need to be merged into main configuration file provided with option "\-c".
@@ -113,186 +113,189 @@ Display this command usage.
 .UNINDENT
 .SH EXAMPLES
 .sp
-Load configuration settings from .nconf file if present and display ncurses\-based
-menu based on default configuration input file "nconf.in" and write the
-changes back to .nconf file:
+Load configuration settings from .nct file if present and display ncurses\-based
+menu based on default configuration input file "nct.in" and write the
+changes back to .nct file:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu
+nct menu
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display ncurses based newer menu, read and write configuration changes to simple.nconf:
+Display ncurses based newer menu, read and write configuration changes to simple.nct:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-n \-c simple.nconf
+nct menu\-n \-c simple.nct
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display Gtk based menu using configuration input file "simple.in", read and write configuration changes to ".nconf":
+Display Gtk based menu using configuration input file "simple.in", read and write configuration changes to ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-g \-i simple.in
+nct menu\-g \-i simple.in
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Display Qt based menu using input file "simple.in", read and write configuration changes to simple.nconf:
+Display Qt based menu using input file "simple.in", read and write configuration changes to simple.nct:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf menu\-q \-c simple.nconf \-i simple.in
+nct menu\-q \-c simple.nct \-i simple.in
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate C header file based on configuration settings read from ".nconf":
+Generate C header file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.h
+nct gen \-o simple.h
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate XML file based on configuration settings read from simple.nconf:
+Generate XML file based on configuration settings read from simple.nct:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-c simple.nconf \-o simple.xml
+nct gen \-c simple.nct \-o simple.xml
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Perl source file based on configuration settings read from ".nconf":
+Generate Perl source file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.pl
+nct gen \-o simple.pl
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Python source file based on configuration settings read from ".nconf":
+Generate Python source file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.py
+nct gen \-o simple.py
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Golang source file based on configuration settings read from ".nconf":
+Generate Golang source file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.go
+nct gen \-o simple.go
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate PHP source file based on configuration settings read from simple.nconf:
+Generate PHP source file based on configuration settings read from simple.nct:
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-c simple.nconf \-o simple.php
+nct gen \-c simple.nct \-o simple.php
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate Ruby source file based on configuration settings read from ".nconf":
+Generate Ruby source file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.rb
+nct gen \-o simple.rb
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Generate JavaScript source file based on configuration settings read from ".nconf":
+Generate JavaScript source file based on configuration settings read from ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf gen \-o simple.js
+nct gen \-o simple.js
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Merge configuration fragments present in other\-feature.conf into ".nconf":
+Merge configuration fragments present in other\-feature.conf into ".nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf merge \-f other\-feature.conf
+nct merge \-f other\-feature.conf
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
 .sp
-Merge configuration fragments present in other\-feature.conf into "simple.nconf":
+Merge configuration fragments present in other\-feature.conf into "simple.nct":
 .INDENT 0.0
 .INDENT 3.5
 .sp
 .nf
 .ft C
-nconf merge \-c simple.conf \-f other\-feature.conf
+nct merge \-c simple.conf \-f other\-feature.conf
 .ft P
 .fi
 .UNINDENT
 .UNINDENT
+.SH SEE ALSO
+.sp
+nmt(1)
 .SH HOMEPAGE
 .sp
-More information about nconf project can be found at <\fI\%http://www.ncrux.com/project/nconf/\fP>
+More information about nct project can be found at <\fI\%http://www.ncrux.com/project/nct/\fP>
 .SH AUTHORS
 .sp
-nconf package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
+nct package is developed by nCrux <\fI\%http://www.ncrux.com/\fP>.
 .sp
 This documentation is done by Aditi <\fI\%aditi@ncrux.com\fP>.
 .SH REPORTING BUGS
 .sp
-You can report bugs at <\fI\%https://github.com/ncrux/nconf/issues\fP>
+You can report bugs at <\fI\%https://github.com/ncrux/nct/issues\fP>
 .SH COPYRIGHT
 .sp
 Copyright © 2016 nCrux.

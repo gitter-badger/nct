@@ -1,7 +1,7 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: nconf
+Upstream-Name: nct
 Upstream-Contact: aditi@ncrux.com
-Source: http://www.github.com/ncrux/nconf/
+Source: http://www.github.com/ncrux/nct/
 
 Files: *
 Copyright: nCrux <http://www.ncrux.com/>

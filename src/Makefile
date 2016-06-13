@@ -92,8 +92,8 @@ ncrux-qconf: $(ncrux-qconf-objs)
 	$(CC) $^ $(ncrux-qconf-ldflags) -o $@
 
 
-LIBPATH=$(DESTDIR)/usr/lib/ncrux/nconf
-SHPATH=$(DESTDIR)/usr/share/ncrux/nconf
+LIBPATH=$(DESTDIR)/usr/lib/ncrux/nct
+SHPATH=$(DESTDIR)/usr/share/ncrux/nct
 
 install:
 	install -m 0755 -d $(LIBPATH) $(SHPATH)

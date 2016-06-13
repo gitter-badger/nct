@@ -20,5 +20,5 @@ config PKG_VER
 endmenu
 
 
-source "src/nconf.in"
+source "src/nct.in"
 

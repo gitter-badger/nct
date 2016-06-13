@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="Docutils 0.12: http://docutils.sourceforge.net/" />
-<title>nconf</title>
+<title>nct</title>
 <meta name="date" content="13 Jun 2016" />
 <style type="text/css">
 
@@ -339,8 +339,8 @@ ul.auto-toc {
 </style>
 </head>
 <body>
-<div class="document" id="nconf">
-<h1 class="title">nconf</h1>
+<div class="document" id="nct">
+<h1 class="title">nct</h1>
 <h2 class="subtitle" id="menu-driven-tool-to-configure-build-settings-of-a-project">Menu driven tool to configure build settings of a project</h2>
 <table class="docinfo" frame="void" rules="none">
 <col class="docinfo-name" />
@@ -358,19 +358,19 @@ ul.auto-toc {
 </table>
 <div class="section" id="synopsis">
 <h1>SYNOPSIS</h1>
-<p>nconf nomenu [-m|--mode {alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]</p>
-<p>nconf {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]</p>
-<p>nconf gen [-c|--config config_file] [-o|--output output_file]</p>
-<p>nconf merge [-c|--config config_file] [-f|--fragment fragment_config_file]</p>
-<p>nconf help</p>
+<p>nct nomenu [-m|--mode {alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]</p>
+<p>nct {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]</p>
+<p>nct gen [-c|--config config_file] [-o|--output output_file]</p>
+<p>nct merge [-c|--config config_file] [-f|--fragment fragment_config_file]</p>
+<p>nct help</p>
 </div>
 <div class="section" id="description">
 <h1>DESCRIPTION</h1>
-<p>A tool to configure build settings of a project using menu driven interface and to generate corresponding source code to be used in languages like C, Go, Python, PHP, Perl, JavaScript etc. This tool is based on kconfig found in Linux kernel sources.</p>
+<p>This tool is based on kconfig tool available as part of standard Linux kernel sources. This project makes kconfig standalone and usable in any project leveraging intuitive menu based configuration. In addition to that, this tool can generate source code in various high level languages like C, Go, Python, PHP, Perl, JavaScript etc to make the configuration parameters readily usable in terms of key/value pairs. The configuration file can be directly included in a Makefile to achieve conditional compilation. The configuration file can also be included in bash shell script as is. This tool also supports &quot;merge&quot; command to merge partial configuration file into a base configuration file. The nCrux Make Tool (nmt) tool is a great companion with this tool to make the build system ridiculously simple.</p>
 </div>
 <div class="section" id="options">
 <h1>OPTIONS</h1>
-<p>nomenu  Dislpay no interactive menu and generate configuration file based on mode specified.</p>
+<p>nomenu  Display no interactive menu and generate or update configuration file based on mode specified.</p>
 <p>menu    Start terminal based menu (classic)</p>
 <p>menu-n  Start terminal based menu (new)</p>
 <p>menu-g  Start gtk based menu</p>
@@ -385,7 +385,7 @@ ul.auto-toc {
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-m <var>mode_str</var></span>, <span class="option">--mode <var>mode_str</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td><p class="first">This option is valid only for &quot;nomenu&quot; subcommand. Following are the modes supported. The mode &quot;alldef&quot; is assumed if this option is not given.</p>
+<tr><td>&nbsp;</td><td><p class="first">This option is valid only for &quot;nomenu&quot; sub-command. Following are the modes supported. The mode &quot;alldef&quot; is assumed if this option is not given.</p>
 <blockquote class="last">
 <p><strong>alldef</strong>    Select all default values for each configuration element.</p>
 <p><strong>allno</strong>     Unselect all boolean and tristate configuration elements.</p>
@@ -396,11 +396,11 @@ ul.auto-toc {
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-c <var>config_file</var></span>, <span class="option">--config <var>config_file</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>File containing current selection of configuration settings. The file &quot;.nconf&quot; is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.</td></tr>
+<tr><td>&nbsp;</td><td>File containing current selection of configuration settings. The file &quot;.nct&quot; is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-i <var>config_input_file</var></span>, <span class="option">--input <var>config_input_file</var></span></kbd></td>
 </tr>
-<tr><td>&nbsp;</td><td>Top level configuration input file used for menu interface. The file &quot;nconf.in&quot; is assumed if this option is not given.</td></tr>
+<tr><td>&nbsp;</td><td>Top level configuration input file used for menu interface. The file &quot;nct.in&quot; is assumed if this option is not given.</td></tr>
 <tr><td class="option-group" colspan="2">
 <kbd><span class="option">-f <var>fragment_config_file</var></span>, <span class="option">--fragment <var>fragment_config_file</var></span></kbd></td>
 </tr>
@@ -428,77 +428,81 @@ ul.auto-toc {
 </div>
 <div class="section" id="examples">
 <h1>EXAMPLES</h1>
-<p>Load configuration settings from .nconf file if present and display ncurses-based
-menu based on default configuration input file &quot;nconf.in&quot; and write the
-changes back to .nconf file:</p>
+<p>Load configuration settings from .nct file if present and display ncurses-based
+menu based on default configuration input file &quot;nct.in&quot; and write the
+changes back to .nct file:</p>
 <pre class="literal-block">
-nconf menu
+nct menu
 </pre>
-<p>Display ncurses based newer menu, read and write configuration changes to simple.nconf:</p>
+<p>Display ncurses based newer menu, read and write configuration changes to simple.nct:</p>
 <pre class="literal-block">
-nconf menu-n -c simple.nconf
+nct menu-n -c simple.nct
 </pre>
-<p>Display Gtk based menu using configuration input file &quot;simple.in&quot;, read and write configuration changes to &quot;.nconf&quot;:</p>
+<p>Display Gtk based menu using configuration input file &quot;simple.in&quot;, read and write configuration changes to &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf menu-g -i simple.in
+nct menu-g -i simple.in
 </pre>
-<p>Display Qt based menu using input file &quot;simple.in&quot;, read and write configuration changes to simple.nconf:</p>
+<p>Display Qt based menu using input file &quot;simple.in&quot;, read and write configuration changes to simple.nct:</p>
 <pre class="literal-block">
-nconf menu-q -c simple.nconf -i simple.in
+nct menu-q -c simple.nct -i simple.in
 </pre>
-<p>Generate C header file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate C header file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.h
+nct gen -o simple.h
 </pre>
-<p>Generate XML file based on configuration settings read from simple.nconf:</p>
+<p>Generate XML file based on configuration settings read from simple.nct:</p>
 <pre class="literal-block">
-nconf gen -c simple.nconf -o simple.xml
+nct gen -c simple.nct -o simple.xml
 </pre>
-<p>Generate Perl source file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate Perl source file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.pl
+nct gen -o simple.pl
 </pre>
-<p>Generate Python source file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate Python source file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.py
+nct gen -o simple.py
 </pre>
-<p>Generate Golang source file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate Golang source file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.go
+nct gen -o simple.go
 </pre>
-<p>Generate PHP source file based on configuration settings read from simple.nconf:</p>
+<p>Generate PHP source file based on configuration settings read from simple.nct:</p>
 <pre class="literal-block">
-nconf gen -c simple.nconf -o simple.php
+nct gen -c simple.nct -o simple.php
 </pre>
-<p>Generate Ruby source file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate Ruby source file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.rb
+nct gen -o simple.rb
 </pre>
-<p>Generate JavaScript source file based on configuration settings read from &quot;.nconf&quot;:</p>
+<p>Generate JavaScript source file based on configuration settings read from &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf gen -o simple.js
+nct gen -o simple.js
 </pre>
-<p>Merge configuration fragments present in other-feature.conf into &quot;.nconf&quot;:</p>
+<p>Merge configuration fragments present in other-feature.conf into &quot;.nct&quot;:</p>
 <pre class="literal-block">
-nconf merge -f other-feature.conf
+nct merge -f other-feature.conf
 </pre>
-<p>Merge configuration fragments present in other-feature.conf into &quot;simple.nconf&quot;:</p>
+<p>Merge configuration fragments present in other-feature.conf into &quot;simple.nct&quot;:</p>
 <pre class="literal-block">
-nconf merge -c simple.conf -f other-feature.conf
+nct merge -c simple.conf -f other-feature.conf
 </pre>
+</div>
+<div class="section" id="see-also">
+<h1>SEE ALSO</h1>
+<p>nmt(1)</p>
 </div>
 <div class="section" id="homepage">
 <h1>HOMEPAGE</h1>
-<p>More information about nconf project can be found at &lt;<a class="reference external" href="http://www.ncrux.com/project/nconf/">http://www.ncrux.com/project/nconf/</a>&gt;</p>
+<p>More information about nct project can be found at &lt;<a class="reference external" href="http://www.ncrux.com/project/nct/">http://www.ncrux.com/project/nct/</a>&gt;</p>
 </div>
 <div class="section" id="authors">
 <h1>AUTHORS</h1>
-<p>nconf package is developed by nCrux &lt;<a class="reference external" href="http://www.ncrux.com/">http://www.ncrux.com/</a>&gt;.</p>
+<p>nct package is developed by nCrux &lt;<a class="reference external" href="http://www.ncrux.com/">http://www.ncrux.com/</a>&gt;.</p>
 <p>This documentation is done by Aditi &lt;<a class="reference external" href="mailto:aditi&#64;ncrux.com">aditi&#64;ncrux.com</a>&gt;.</p>
 </div>
 <div class="section" id="reporting-bugs">
 <h1>REPORTING BUGS</h1>
-<p>You can report bugs at &lt;<a class="reference external" href="https://github.com/ncrux/nconf/issues">https://github.com/ncrux/nconf/issues</a>&gt;</p>
+<p>You can report bugs at &lt;<a class="reference external" href="https://github.com/ncrux/nct/issues">https://github.com/ncrux/nct/issues</a>&gt;</p>
 </div>
 <div class="section" id="copyright">
 <h1>COPYRIGHT</h1>

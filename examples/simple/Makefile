@@ -1,37 +1,42 @@
 #
-# Simple demonstration of nCrux Configuration Tool (nconf)
+# Simple demonstration of nCrux Configuration Tool (nct)
 #
-CONF_FRAGMENT_FILE=frag.nconf
+CONF_FRAGMENT_FILE=frag.nct
 
-merge:
-	nconf merge -f $(CONF_FRAGMENT_FILE)
+all: merge test-all
+
+.nct:
+	nct
+
+merge: .nct
+	nct merge -f $(CONF_FRAGMENT_FILE)
 
 gen-all: h pl py xml php go
 
 h:
-	nconf gen -o simple_nconf.h
+	nct gen -o simple_nct.h
 
 pl:
-	nconf gen -o simple_nconf.pl
+	nct gen -o simple_nct.pl
 
 py:
-	nconf gen -o simple_nconf.py
+	nct gen -o simple_nct.py
 
 xml:
-	nconf gen -o simple_nconf.xml
+	nct gen -o simple_nct.xml
 
 php:
-	nconf gen -o simple_nconf.php
+	nct gen -o simple_nct.php
 
 go:
-	-mkdir -p simple_nconf
-	nconf gen -o simple_nconf/simple_nconf.go
+	-mkdir -p simple_nct
+	nct gen -o simple_nct/simple_nct.go
 
 rb:
-	nconf gen -o simple_nconf.rb
+	nct gen -o simple_nct.rb
 
 js:
-	nconf gen -o simple_nconf.js
+	nct gen -o simple_nct.js
 
 test-all: test-h test-pl test-py test-xml test-php test-go test-rb test-js
 
@@ -46,7 +51,7 @@ test-py: py
 	python test.py
 
 test-xml: xml
-	xmllint simple_nconf.xml
+	xmllint simple_nct.xml
 
 test-php: php
 	php test.php
@@ -62,14 +67,14 @@ test-js: js
 
 
 clean:
-	rm -f .nconf .nconf.old
-	rm -f simple_nconf.h test
-	rm -f simple_nconf.pl
-	rm -f simple_nconf.xml
-	rm -f simple_nconf.py
-	rm -rf simple_nconf/
-	rm -f simple_nconf.php
-	rm -f simple_nconf.py simple_nconf.pyc
-	rm -f simple_nconf.rb
-	rm -f simple_nconf.js
+	rm -f .nct .nct.old
+	rm -f simple_nct.h test
+	rm -f simple_nct.pl
+	rm -f simple_nct.xml
+	rm -f simple_nct.py
+	rm -rf simple_nct/
+	rm -f simple_nct.php
+	rm -f simple_nct.py simple_nct.pyc
+	rm -f simple_nct.rb
+	rm -f simple_nct.js
 

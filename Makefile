@@ -11,25 +11,25 @@ install: all
 	$(MAKE) -C src install
 	$(MAKE) -C scripts install
 	$(MAKE) -C doc install
-	@mkdir -p $(DESTDIR)/usr/share/doc/nconf/
-	cp -ar examples $(DESTDIR)/usr/share/doc/nconf/
-	@$(MAKE) -C $(DESTDIR)/usr/share/doc/nconf/examples clean
+	@mkdir -p $(DESTDIR)/usr/share/doc/nct/
+	cp -ar examples $(DESTDIR)/usr/share/doc/nct/
+	@$(MAKE) -C $(DESTDIR)/usr/share/doc/nct/examples clean
 
 deb: install
 	mkdir -p $(DESTDIR)/DEBIAN
 	cp package/debian/control $(DESTDIR)/DEBIAN/
-	dpkg-deb --build $(DESTDIR) nconf.deb
+	dpkg-deb --build $(DESTDIR) nct.deb
 
 rpm: install
 	rm -rf RPMS
 	mkdir -p RPMS
-	rpmbuild -bb package/rpm/nconf.spec --buildroot=`readlink -e $(DESTDIR)`
+	rpmbuild -bb package/rpm/nct.spec --buildroot=`readlink -e $(DESTDIR)`
 	mv `find RPMS -name \*.rpm` .
 	rm -rf RPMS
 
 
 deb-check:
-	lintian nconf.deb
+	lintian nct.deb
 
 clean:
 	$(MAKE) -C src clean

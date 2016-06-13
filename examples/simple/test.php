@@ -1,9 +1,9 @@
 <?php
-include 'simple_nconf.php';
-echo 'MYBOOL = ' . $nconf['MYBOOL'] . "\n";
-echo 'MYSTRING = ' . $nconf['MYSTRING'] . "\n";
-echo 'MYTRISTATE = ' . $nconf['MYTRISTATE'] . "\n";
-echo 'MYINT = ' . $nconf['MYINT'] . "\n";
-echo 'MYHEX = ' . $nconf['MYHEX'] . "\n";
+include 'simple_nct.php';
+echo 'MYBOOL = ' . $nct['MYBOOL'] . "\n";
+echo 'MYSTRING = ' . $nct['MYSTRING'] . "\n";
+echo 'MYTRISTATE = ' . $nct['MYTRISTATE'] . "\n";
+echo 'MYINT = ' . $nct['MYINT'] . "\n";
+echo 'MYHEX = ' . $nct['MYHEX'] . "\n";
 ?>
 

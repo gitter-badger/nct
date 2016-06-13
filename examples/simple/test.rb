@@ -1,9 +1,9 @@
 #!/usr/bin/ruby
 
-require_relative 'simple_nconf.rb'
+require_relative 'simple_nct.rb'
 
-puts 'MYBOOL = ' + $nconf["MYBOOL"] + "\n";
-puts 'MYSTRING = ' + $nconf['MYSTRING'] + "\n";
-puts 'MYTRISTATE = ' + $nconf['MYTRISTATE'] + "\n";
-puts 'MYINT = ' + "#{$nconf['MYINT']}" + "\n";
-puts 'MYHEX = ' + "#{$nconf['MYHEX']}" + "\n";
+puts 'MYBOOL = ' + $nct["MYBOOL"] + "\n";
+puts 'MYSTRING = ' + $nct['MYSTRING'] + "\n";
+puts 'MYTRISTATE = ' + $nct['MYTRISTATE'] + "\n";
+puts 'MYINT = ' + "#{$nct['MYINT']}" + "\n";
+puts 'MYHEX = ' + "#{$nct['MYHEX']}" + "\n";

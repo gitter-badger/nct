@@ -1,7 +1,7 @@
-Simple demonstration of nconf usage
-===================================
+Simple demonstration of nCrux Configuration Tool (nct) usage
+============================================================
 
-This project demonstrates usage of nCrux Configuration Tool (nconf) in terms of
+This project demonstrates usage of nCrux Configuration Tool (nct) in terms of
 configuration menu, configuration fragment merging, code generation for various
 high-level languages.
 
@@ -9,7 +9,7 @@ Use the following instructions to build and test the project.
 
 Configure project based on classic menu.
 
-	$ nconf menu
+	$ nct menu
 
 Merge a configuration fragment to main configuration file.
 

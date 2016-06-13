@@ -1,7 +1,7 @@
-# nconf help
+# nct help
 
 ##Setting Menu/Window Title
-Place following in the top-level Nconfig file.
+Place following in the top-level nct.in file.
 
 	mainmenu "MyProject Configuration"
 

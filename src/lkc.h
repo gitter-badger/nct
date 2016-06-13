@@ -35,11 +35,11 @@ extern "C" {
 #define N_(text) (text)
 
 #ifndef CONFIG_
-#define CONFIG_ "NCONF_"
+#define CONFIG_ "NCT_"
 #endif
 static inline const char *CONFIG_prefix(void)
 {
-	return getenv( "NCONF_" ) ?: CONFIG_;
+	return getenv( "NCT_" ) ?: CONFIG_;
 }
 #undef CONFIG_
 #define CONFIG_ CONFIG_prefix()

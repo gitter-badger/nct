@@ -1,16 +1,16 @@
 
-ifneq ($(shell readlink -e ../.nconf),)
-include ../.nconf
+ifneq ($(shell readlink -e ../.nct),)
+include ../.nct
 endif
 
 TARGET=helloc
 OBJS=main.o
 
-ifneq ($(NCONF_FEATURE1),)
+ifneq ($(NCT_FEATURE1),)
 OBJS += feature1.o
 endif
 
-ifneq ($(NCONF_FEATURE2),)
+ifneq ($(NCT_FEATURE2),)
 OBJS += feature2.o
 endif
 

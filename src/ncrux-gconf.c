@@ -1464,7 +1464,7 @@ int main(int ac, char *av[])
 	if (env)
 		glade_file = g_strdup(env);
 	else
-		glade_file = g_strdup("/usr/share/ncrux/nconf/ncrux-gconf.glade");
+		glade_file = g_strdup("/usr/share/ncrux/nct/ncrux-gconf.glade");
 
 	/* Conf stuffs */
 	if (ac > 1 && av[1][0] == '-') {

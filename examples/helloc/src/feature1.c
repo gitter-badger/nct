@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "helloc_nconf.h"
+#include "helloc_nct.h"
 
 void feature1_greet(void)
 {
-	printf("%s\n", NCONF_FEATURE1_MESSAGE);
+	printf("%s\n", NCT_FEATURE1_MESSAGE);
 }

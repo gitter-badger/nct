@@ -1,14 +1,14 @@
 
-all: src/helloc_nconf.h
+all: src/helloc_nct.h
 	$(MAKE) -C src
 
-.nconf: nconf.in src/nconf.in
-	nconf menu
+.nct: nct.in src/nct.in
+	nct menu
 
-src/helloc_nconf.h: .nconf
-	nconf gen -o $@
+src/helloc_nct.h: .nct
+	nct gen -o $@
 
 clean:
 	$(MAKE) -C src clean
-	rm -f .nconf .nconf.old src/helloc_nconf.h
+	rm -f .nct .nct.old src/helloc_nct.h
 
