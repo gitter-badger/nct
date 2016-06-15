@@ -18,6 +18,18 @@ zconf.lex.c: zconf.lex.c_shipped
 zconf.tab.c: zconf.tab.c_shipped zconf.hash.c zconf.lex.c
 	cp zconf.tab.c_shipped zconf.tab.c
 
+#%.tab.c_shipped: %.y
+zconf.tab.c_shipped: zconf.y
+	bison -o$@ -t -l -p zconf $<
+
+zconf.lex.c_shipped: zconf.l
+	flex -L -o $@ -P zconf $<
+
+%.hash.c_shipped: %.gperf
+	gperf -t --output-file $@ -a -C -E -g -k '1,3,$$' -p -t $^
+
+
+
 CFLAGS += $(shell ./lxdialog/check-lxdialog.sh -ccflags) -DLOCALE
 lxdialog := lxdialog/checklist.o lxdialog/util.o lxdialog/inputbox.o
 lxdialog += lxdialog/textbox.o lxdialog/yesno.o lxdialog/menubox.o
