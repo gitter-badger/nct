@@ -12,7 +12,7 @@ PROG_NAME=`basename $0`
 OUTPUT_FILE=.nct.h
 NCT_FILE=.nct
 NCT_FRAG_FILE=
-NCT_IN_FILE=nct.in
+NCT_IN_FILE=
 NOMENU_MODE=alldef
 
 usage() {
@@ -120,12 +120,38 @@ fi
 
 export PATH=/usr/lib/ncrux/nct:$PATH
 
+function lookup_nct_in()
+{
+	local MYDIR=
+	while true; do
+		if [ -f ${MYDIR}nct.in ]; then
+			echo -n ${MYDIR}nct.in
+			#readlink -e -n ${MYDIR}nct.in
+			return
+		fi
+		MYDIR=${MYDIR}../
+
+		if [ ! -d ${MYDIR} ]; then
+			return
+		fi
+	done
+}
+
+
 case "$SUBCMD" in
 help)
 	usage
 	exit 0
    	;;
 nomenu|menu|menu-n|menu-g|menu-q)
+
+	if [ "$NCT_IN_FILE" == "" ]; then
+		NCT_IN_FILE=`lookup_nct_in`
+		if [ "$NCT_IN_FILE" == "" ]; then
+			echo No usable configuration input file nct.in found
+		fi
+		echo Using configuration input file: \"$NCT_IN_FILE\"
+	fi
 
 	if [ ! -f $NCT_IN_FILE ]; then
 		echo Configuration input file $NCT_IN_FILE is not present
@@ -169,7 +195,7 @@ esac
 
 case "$SUBCMD" in
 nomenu)
-	ncrux-conf -s $NCT_IN_FILE $NOMENU_OPT
+	ncrux-conf $NCT_IN_FILE $NOMENU_OPT
 	;;
 menu)
 	ncrux-mconf -s $NCT_IN_FILE

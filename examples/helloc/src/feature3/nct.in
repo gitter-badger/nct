@@ -1,0 +1,20 @@
+#
+# nCrux Configuration Tool enabled "Hello C" example project.
+#
+# This example project demonstartes how nCrux configuration tool
+# can be leveraged in a C project.
+#
+
+config FEATURE3
+	bool "Feature3"
+	default y
+
+if FEATURE3
+
+config FEATURE3_MESSAGE
+	string "Feature3 Greet Message"
+	default "Hello from Feature3"
+
+endif
+
+

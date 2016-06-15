@@ -28,3 +28,6 @@ config FEATURE2_MESSAGE
 	default "Hello from Feature2"
 
 endif
+
+source "../src/feature3/nct.in"
+

@@ -9,23 +9,50 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lkc.h"
+#include <libgen.h>
 
 /* file already present in list? If not add it */
 struct file *file_lookup(const char *name)
 {
 	struct file *file;
 	const char *file_name = sym_expand_string_value(name);
+	char fullname[PATH_MAX+1] = "";
+	char *realname = NULL;
+
+	if (current_file) {
+		strcpy(fullname,current_file->name);
+	} else {
+		/*
+		 * FIXME:
+		 * dirname("nct.in") is returning "nct.in" instead of "."
+		 */
+		if ((name[0] != '.') &&
+			(name[0] != '/'))
+			strcpy(fullname,".");
+	}
+
+	dirname(fullname);
+
+	if (fullname[0] != '\0')
+		strcat(fullname,"/");
+	strcat(fullname,file_name);
+	free((void*) file_name);
+
+	realname = realpath(fullname,NULL);
+	if (!realname) {
+		return NULL;
+	}
 
 	for (file = file_list; file; file = file->next) {
-		if (!strcmp(name, file->name)) {
-			free((void *)file_name);
+		if (!strcmp(realname, file->realname)) {
 			return file;
 		}
 	}
 
 	file = xmalloc(sizeof(*file));
 	memset(file, 0, sizeof(*file));
-	file->name = file_name;
+	file->name = strdup(fullname);
+	file->realname = realname;
 	file->next = file_list;
 	file_list = file;
 	return file;
