@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "helloc_nct.h"
+#include "../helloc_nct.h"
 
 void feature3_greet(void)
 {

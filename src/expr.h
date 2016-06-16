@@ -194,6 +194,7 @@ struct jump_key {
 
 extern struct file *file_list;
 extern struct file *current_file;
+extern char *main_file_path;
 struct file *lookup_file(const char *name);
 
 extern struct symbol symbol_yes, symbol_no, symbol_mod;

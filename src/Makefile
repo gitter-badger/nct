@@ -29,7 +29,8 @@ zconf.lex.c_shipped: zconf.l
 	gperf -t --output-file $@ -a -C -E -g -k '1,3,$$' -p -t $^
 
 
-
+CFLAGS += -g -ggdb
+#CFLAGS += -O2
 CFLAGS += $(shell ./lxdialog/check-lxdialog.sh -ccflags) -DLOCALE
 lxdialog := lxdialog/checklist.o lxdialog/util.o lxdialog/inputbox.o
 lxdialog += lxdialog/textbox.o lxdialog/yesno.o lxdialog/menubox.o

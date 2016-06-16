@@ -17,6 +17,7 @@ static struct menu **last_entry_ptr;
 
 struct file *file_list;
 struct file *current_file;
+char *main_file_path = NULL;
 
 void menu_warn(struct menu *menu, const char *fmt, ...)
 {
@@ -125,11 +126,18 @@ void menu_set_type(int type)
 		sym_type_name(sym->type), sym_type_name(type));
 }
 
-static struct property *menu_add_prop(enum prop_type type, char *prompt, struct expr *expr, struct expr *dep)
+static struct property *menu_add_prop(enum prop_type type, char *prompt,
+			struct expr *expr, struct expr *dep,
+			struct menu *entry)
 {
-	struct property *prop = prop_alloc(type, current_entry->sym);
+	struct property *prop;
 
-	prop->menu = current_entry;
+	if (!entry)
+		entry = current_entry;
+
+	prop = prop_alloc(type, entry->sym);
+
+	prop->menu = entry;
 	prop->expr = expr;
 	prop->visible.expr = menu_check_dep(dep);
 
@@ -139,12 +147,12 @@ static struct property *menu_add_prop(enum prop_type type, char *prompt, struct 
 			while (isspace(*prompt))
 				prompt++;
 		}
-		if (current_entry->prompt && current_entry != &rootmenu)
+		if (entry->prompt && entry != &rootmenu)
 			prop_warn(prop, "prompt redefined");
 
 		/* Apply all upper menus' visibilities to actual prompts. */
 		if(type == P_PROMPT) {
-			struct menu *menu = current_entry;
+			struct menu *menu = entry;
 
 			while ((menu = menu->parent) != NULL) {
 				struct expr *dup_expr;
@@ -168,7 +176,7 @@ static struct property *menu_add_prop(enum prop_type type, char *prompt, struct 
 			}
 		}
 
-		current_entry->prompt = prop;
+		entry->prompt = prop;
 	}
 	prop->text = prompt;
 
@@ -177,8 +185,14 @@ static struct property *menu_add_prop(enum prop_type type, char *prompt, struct 
 
 struct property *menu_add_prompt(enum prop_type type, char *prompt, struct expr *dep)
 {
-	return menu_add_prop(type, prompt, NULL, dep);
+	return menu_add_prop(type, prompt, NULL, dep, NULL);
 }
+
+void menu_set_maintitle(char *prompt)
+{
+	menu_add_prop(P_MENU, prompt, NULL, NULL, &rootmenu);
+}
+
 
 void menu_add_visibility(struct expr *expr)
 {
@@ -188,12 +202,12 @@ void menu_add_visibility(struct expr *expr)
 
 void menu_add_expr(enum prop_type type, struct expr *expr, struct expr *dep)
 {
-	menu_add_prop(type, NULL, expr, dep);
+	menu_add_prop(type, NULL, expr, dep, NULL);
 }
 
 void menu_add_symbol(enum prop_type type, struct symbol *sym, struct expr *dep)
 {
-	menu_add_prop(type, NULL, expr_alloc_symbol(sym), dep);
+	menu_add_prop(type, NULL, expr_alloc_symbol(sym), dep, NULL);
 }
 
 void menu_add_option(int token, char *arg)

@@ -47,6 +47,8 @@ static struct menu *current_menu, *current_entry;
 %token <id>T_MENU
 %token <id>T_ENDMENU
 %token <id>T_SOURCE
+%token <id>T_INCLUDE
+%token <id>T_MAINTITLE
 %token <id>T_CHOICE
 %token <id>T_ENDCHOICE
 %token <id>T_COMMENT
@@ -134,6 +136,8 @@ common_stmt:
 	| config_stmt
 	| menuconfig_stmt
 	| source_stmt
+	| include_stmt
+	| maintitle_stmt
 ;
 
 option_error:
@@ -348,6 +352,8 @@ if_block:
 
 mainmenu_stmt: T_MAINMENU prompt nl
 {
+	printd(PRINTD, "%s:%d: mainmenu is obsolete. Use \"maintitle\" instead\n",
+			 zconf_curname(), zconf_lineno());
 	menu_add_prompt(P_MENU, $2, NULL);
 };
 
@@ -386,8 +392,24 @@ menu_block:
 source_stmt: T_SOURCE prompt T_EOL
 {
 	printd(DEBUG_PARSE, "%s:%d:source %s\n", zconf_curname(), zconf_lineno(), $2);
-	zconf_nextfile($2);
+	printd(PRINTD, "%s:%d: source is obsolete. Use \"include\" with relative path instead\n",
+			 zconf_curname(), zconf_lineno());
+	zconf_nextfile($2,1);
 };
+
+include_stmt: T_INCLUDE prompt T_EOL
+{
+	printd(DEBUG_PARSE, "%s:%d:include %s\n", zconf_curname(), zconf_lineno(), $2);
+	zconf_nextfile($2,0);
+};
+
+maintitle_stmt: T_MAINTITLE prompt T_EOL
+{
+	printd(DEBUG_PARSE, "%s:%d:maintitle %s\n", zconf_curname(), zconf_lineno(), $2);
+	menu_set_maintitle($2);
+};
+
+
 
 /* comment entry */
 
@@ -528,6 +550,7 @@ void conf_parse(const char *name)
 static const char *zconf_tokenname(int token)
 {
 	switch (token) {
+	case T_MAINTITLE:	return "maintitle";
 	case T_MENU:		return "menu";
 	case T_ENDMENU:		return "endmenu";
 	case T_CHOICE:		return "choice";

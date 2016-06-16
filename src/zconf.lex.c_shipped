@@ -2421,17 +2421,22 @@ void zconf_initscan(const char *name)
 	current_buf = xmalloc(sizeof(*current_buf));
 	memset(current_buf, 0, sizeof(*current_buf));
 
-	current_file = file_lookup(name);
+	current_file = file_lookup(name,0);
 	current_file->lineno = 1;
 }
 
-void zconf_nextfile(const char *name)
+void zconf_nextfile(const char *name, int rtr_flag)
 {
 	struct file *iter;
-	struct file *file = file_lookup(name);
+	struct file *file = file_lookup(name, rtr_flag);
 	struct buffer *buf = xmalloc(sizeof(*buf));
 	memset(buf, 0, sizeof(*buf));
 
+	if (file->realname[0] == '\0') {
+		printf("%s:%d: missing input file \"%s\"\n",
+		    zconf_curname(), zconf_lineno(), file->name);
+		exit(1);
+	}
 	current_buf->state = YY_CURRENT_BUFFER;
 	zconfin = zconf_fopen(file->name);
 	if (!zconfin) {

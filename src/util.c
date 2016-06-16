@@ -12,47 +12,72 @@
 #include <libgen.h>
 
 /* file already present in list? If not add it */
-struct file *file_lookup(const char *name)
+/* rtr_flag = relatuve to root file flag. ON for "source" statement */
+struct file *file_lookup(const char *name, int rtr_flag)
 {
 	struct file *file;
 	const char *file_name = sym_expand_string_value(name);
 	char fullname[PATH_MAX+1] = "";
 	char *realname = NULL;
 
-	if (current_file) {
-		strcpy(fullname,current_file->name);
-	} else {
-		/*
-		 * FIXME:
-		 * dirname("nct.in") is returning "nct.in" instead of "."
-		 */
-		if ((name[0] != '.') &&
-			(name[0] != '/'))
+	/* very first file.. retrieve path to be used with source statement */
+	if (!current_file) {
+		strcpy(fullname,file_name);
+		dirname(fullname);
+		if ((fullname[0] != '.') && (fullname[0] != '/'))
 			strcpy(fullname,".");
+
+		if(main_file_path) {
+			/* shouldn't really happen */
+			free(main_file_path);
+		}
+
+		main_file_path = strdup(fullname);
+		fullname[0] = '\0';
 	}
 
-	dirname(fullname);
+	/* construct relative path, if the original is not absolute path */
+	if (file_name[0] != '/') {
+		if (current_file) {
+			if (rtr_flag) {
+				/* included using "source" statement. */
+				strcpy(fullname,main_file_path);
+			} else {
+				/* included using "include" statement. */
+				strcpy(fullname,current_file->name);
+				dirname(fullname);
+			}
+		} else {
+			/*
+			 * FIXME:
+			 * This file is root nct.in file.
+			 * dirname("nct.in") is returning "nct.in" instead of "."
+			 */
+			if ((file_name[0] != '.') &&
+				(file_name[0] != '/'))
+				strcpy(fullname,".");
+		}
 
-	if (fullname[0] != '\0')
-		strcat(fullname,"/");
+		if (fullname[0] != '\0')
+			strcat(fullname,"/");
+	}
+
 	strcat(fullname,file_name);
 	free((void*) file_name);
 
 	realname = realpath(fullname,NULL);
-	if (!realname) {
-		return NULL;
-	}
-
-	for (file = file_list; file; file = file->next) {
-		if (!strcmp(realname, file->realname)) {
-			return file;
+	if (realname) {
+		for (file = file_list; file; file = file->next) {
+			if (!strcmp(realname, file->realname)) {
+				return file;
+			}
 		}
 	}
 
 	file = xmalloc(sizeof(*file));
 	memset(file, 0, sizeof(*file));
 	file->name = strdup(fullname);
-	file->realname = realname;
+	file->realname = realname?realname:strdup("");
 	file->next = file_list;
 	file_list = file;
 	return file;

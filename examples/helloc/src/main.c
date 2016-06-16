@@ -22,5 +22,13 @@ int main(int argc, char *argv[])
 	feature2_greet();
 	#endif
 
+	#if NCT_FEATURE3
+	feature3_greet();
+	#endif
+
+	#if NCT_FEATURE4
+	feature4_greet();
+	#endif
+
 	return 0;
 }

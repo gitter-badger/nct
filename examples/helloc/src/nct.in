@@ -23,11 +23,17 @@ config FEATURE2
 
 if FEATURE2
 
+maintitle "Custom Project Title"
+
 config FEATURE2_MESSAGE
 	string "Feature2 Greet Message"
 	default "Hello from Feature2"
 
 endif
 
-source "../src/feature3/nct.in"
+# "source" uses path relative to root file
+source "src/feature3/nct.in"
+
+# "include" uses path relative to this file
+include "feature4/nct.in"
 

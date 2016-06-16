@@ -72,7 +72,7 @@ void zconfdump(FILE *out);
 void zconf_starthelp(void);
 FILE *zconf_fopen(const char *name);
 void zconf_initscan(const char *name);
-void zconf_nextfile(const char *name);
+void zconf_nextfile(const char *name, int rtr_flag);
 int zconf_lineno(void);
 const char *zconf_curname(void);
 
@@ -104,6 +104,7 @@ void menu_end_entry(void);
 void menu_add_dep(struct expr *dep);
 void menu_add_visibility(struct expr *dep);
 struct property *menu_add_prompt(enum prop_type type, char *prompt, struct expr *dep);
+void menu_set_maintitle(char *prompt);
 void menu_add_expr(enum prop_type type, struct expr *expr, struct expr *dep);
 void menu_add_symbol(enum prop_type type, struct symbol *sym, struct expr *dep);
 void menu_add_option(int token, char *arg);
@@ -111,7 +112,7 @@ void menu_finalize(struct menu *parent);
 void menu_set_type(int type);
 
 /* util.c */
-struct file *file_lookup(const char *name);
+struct file *file_lookup(const char *name, int rtr_flag);
 int file_write_dep(const char *name);
 void *xmalloc(size_t size);
 void *xcalloc(size_t nmemb, size_t size);

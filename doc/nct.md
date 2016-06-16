@@ -15,7 +15,7 @@ Menu driven tool to configure build settings of a project
 SYNOPSIS
 ========
 
-nct nomenu [-m|--mode {alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]
+nct [nomenu] [-m|--mode {update|alldef|allno|allyes|random}] [-c|--config config_file] [-i|--input config_input_file]
 
 nct {menu|menu-n|menu-g|menu-q} [-c|--config config_file] [-i|--input config_input_file]
 
@@ -51,13 +51,15 @@ help	Display command usage information.
 -m mode_str, --mode mode_str
  This option is valid only for "nomenu" sub-command. Following are the modes supported. The mode "alldef" is assumed if this option is not given.
 
-  **alldef**	Select all default values for each configuration element.
+  **update**	Keep the existing configuration intact and select defaults for new configuration elements.
 
-  **allno**	Unselect all boolean and tristate configuration elements.
+  **alldef**	Disregard existing configuration and select all default values for each configuration element.
 
-  **allyes**	Select all boolean and tristate configuration elements.
+  **allno**	Disregard existing configuration and deselect all boolean and tristate configuration elements.
 
-  **random**	Randomly select boolean and tristate configuration elements.
+  **allyes**	Disregard existing configuration and select all boolean and tristate configuration elements.
+
+  **random**	Disregard existing configuration and randomly select boolean and tristate configuration elements.
 
 -c config_file, --config config_file
  File containing current selection of configuration settings. The file ".nct" is assumed if this option is not given. In case if user saves the modified settings, this file gets overwritten with new settings.
@@ -92,6 +94,21 @@ help	Display command usage information.
 
 EXAMPLES
 ========
+Overwrite existing configuration file ".nct" with all default values selected for all configuration
+elements::
+
+	nct -m alldef
+
+Retain existing configuration of file ".nct" and select default values for all new configuration element::
+
+	nct
+	(or)
+	nct -m update
+
+Overwrite existing configuration file ".nct" with all random values selected for all configuration
+elements::
+
+	nct -m random
 
 Load configuration settings from .nct file if present and display ncurses-based
 menu based on default configuration input file "nct.in" and write the

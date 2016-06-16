@@ -5,7 +5,8 @@
 # can be leveraged in a C project.
 #
 
-mainmenu "Hello C Project"
+#mainmenu "Hello C Project"
+maintitle "Hello C Project"
 
 menu "Package Information"
 
@@ -20,5 +21,7 @@ config PKG_VER
 endmenu
 
 
-source "src/nct.in"
+include "src/nct.in"
 
+
+maintitle "Back to My Title"
