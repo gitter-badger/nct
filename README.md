@@ -1,5 +1,7 @@
 # nCrux Configuration Tool (nct)
 
+[![Join the chat at https://gitter.im/ncrux/nct](https://badges.gitter.im/ncrux/nct.svg)](https://gitter.im/ncrux/nct?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://api.travis-ci.org/ncrux/nct.svg?branch=master)](https://api.travis-ci.org/ncrux/nct)
 
 A tool to configure project settings using menu driven interface and to
