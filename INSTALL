@@ -2,7 +2,7 @@
 
 ## Install dependent packages
 
-sudo apt install ncurses-dev docutils
+sudo apt install ncurses-dev docutils-common
 
 sudo apt install libglade2-dev		(optional)
 

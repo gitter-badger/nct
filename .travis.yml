@@ -3,10 +3,16 @@ addons:
  apt:
   packages:
    - ncurses-dev
-   - docutils
+   - docutils-common
    - bison
    - flex
    - libglade2-dev
+   - lintian
+   - golang
+   - perl
+   - python
+   - php
+   - nodejs
 
 script:
  - make && sudo make deb && sudo dpkg -i nct.deb && make test
