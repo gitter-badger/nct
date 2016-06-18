@@ -1,7 +1,7 @@
 #
 # Session Name
 #
-sessionname nconf
+sessionname nct
 
 shell bash
 scrollback 1024

@@ -1,0 +1,12 @@
+
+addons:
+ apt:
+  packages:
+   - ncurses-dev
+   - docutils
+   - bison
+   - flex
+   - libglade2-dev
+
+script:
+ - make && sudo make deb && sudo dpkg -i nct.deb && make test

@@ -37,3 +37,6 @@ clean:
 	$(MAKE) -C doc clean
 	rm -f *.rpm *.deb
 	rm -rf $(DESTDIR)
+
+test:
+	@echo Dummy rule
