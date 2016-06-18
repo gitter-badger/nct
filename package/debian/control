@@ -3,7 +3,7 @@ Version: 0.2.0
 Section: utils
 Priority: optional
 Architecture: amd64
-Depends: libncurses5 (>= 5.9-4), libtinfo5 (>= 5.9-4), libc6 (>=2.23)
+Depends: libncurses5, libtinfo5, libc6
 Maintainer: Aditi <aditi@ncrux.com>
 Description: nCrux Configuration Tool
  A tool to configure build settings of a project using
